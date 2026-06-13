@@ -3,182 +3,1207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KN5</title>
+    <title>KN5 - 1.0.0 Yokohama</title>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
     <style>
-        /* --- PALET TEMA PREMIUM --- */
+        /* ==========================================================================
+           1. ROOT VARIABLES & PALET TEMA PREMIUM
+           ========================================================================== */
         :root {
-            --bg-main: #0f172a; --bg-card: #1e293b; --bg-sidebar: #020617;     
-            --text-main: #f8fafc; --text-muted: #94a3b8;     
-            --accent: #8b5cf6; --accent-hover: #7c3aed;   
+            --bg-main: #0f172a; 
+            --bg-card: #1e293b; 
+            --bg-sidebar: #020617;     
+            --text-main: #f8fafc; 
+            --text-muted: #94a3b8;     
+            --accent: #8b5cf6; 
+            --accent-hover: #7c3aed;   
             --border: rgba(255,255,255,0.08);
-            --btn-salah: #e11d48; --btn-benar: #059669;      
+            --btn-salah: #e11d48; 
+            --btn-benar: #059669;      
             
             --fc-font: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             --fc-font-size: 4.5rem;
         }
 
-        :root[data-theme="light"] { --bg-main: #f8fafc; --bg-card: #ffffff; --bg-sidebar: #f1f5f9; --text-main: #0f172a; --text-muted: #64748b; --accent: #3b82f6; --accent-hover: #2563eb; --border: rgba(0,0,0,0.1); }
-        :root[data-theme="sakura"] { --bg-main: #fff0f5; --bg-card: #ffffff; --bg-sidebar: #ffe4e1; --text-main: #2d3436; --text-muted: #636e72; --accent: #e84393; --accent-hover: #d63031; --border: rgba(232,67,147,0.2); }
-        :root[data-theme="matcha"] { --bg-main: #f1f8f5; --bg-card: #ffffff; --bg-sidebar: #e8f5e9; --text-main: #1b5e20; --text-muted: #4caf50; --accent: #43a047; --accent-hover: #2e7d32; --border: rgba(76, 175, 80, 0.2); }
-        :root[data-theme="sunrise"] { --bg-main: #fff8e1; --bg-card: #ffffff; --bg-sidebar: #ffecb3; --text-main: #3e2723; --text-muted: #795548; --accent: #f57c00; --accent-hover: #e65100; --border: rgba(245, 124, 0, 0.2); }
-        :root[data-theme="ocean"] { --bg-main: #0b1a2a; --bg-card: #112b45; --bg-sidebar: #05101a; --text-main: #e0f2fe; --text-muted: #94a3b8; --accent: #0ea5e9; --accent-hover: #0284c7; --border: rgba(14,165,233,0.2); }
-        :root[data-theme="lavender"] { --bg-main: #2e1065; --bg-card: #4c1d95; --bg-sidebar: #1e1b4b; --text-main: #f3e8ff; --text-muted: #c4b5fd; --accent: #a855f7; --accent-hover: #9333ea; --border: rgba(168, 85, 247, 0.3); }
-        :root[data-theme="coffee"] { --bg-main: #3e2723; --bg-card: #4e342e; --bg-sidebar: #261410; --text-main: #efebe9; --text-muted: #bcaaa4; --accent: #8d6e63; --accent-hover: #795548; --border: rgba(141, 110, 99, 0.2); }
+        :root[data-theme="light"] { 
+            --bg-main: #f8fafc; 
+            --bg-card: #ffffff; 
+            --bg-sidebar: #f1f5f9; 
+            --text-main: #0f172a; 
+            --text-muted: #64748b; 
+            --accent: #3b82f6; 
+            --accent-hover: #2563eb; 
+            --border: rgba(0,0,0,0.1); 
+        }
+        
+        :root[data-theme="sakura"] { 
+            --bg-main: #fff0f5; 
+            --bg-card: #ffffff; 
+            --bg-sidebar: #ffe4e1; 
+            --text-main: #2d3436; 
+            --text-muted: #636e72; 
+            --accent: #e84393; 
+            --accent-hover: #d63031; 
+            --border: rgba(232,67,147,0.2); 
+        }
+        
+        :root[data-theme="matcha"] { 
+            --bg-main: #f1f8f5; 
+            --bg-card: #ffffff; 
+            --bg-sidebar: #e8f5e9; 
+            --text-main: #1b5e20; 
+            --text-muted: #4caf50; 
+            --accent: #43a047; 
+            --accent-hover: #2e7d32; 
+            --border: rgba(76, 175, 80, 0.2); 
+        }
+        
+        :root[data-theme="sunrise"] { 
+            --bg-main: #fff8e1; 
+            --bg-card: #ffffff; 
+            --bg-sidebar: #ffecb3; 
+            --text-main: #3e2723; 
+            --text-muted: #795548; 
+            --accent: #f57c00; 
+            --accent-hover: #e65100; 
+            --border: rgba(245, 124, 0, 0.2); 
+        }
+        
+        :root[data-theme="ocean"] { 
+            --bg-main: #0b1a2a; 
+            --bg-card: #112b45; 
+            --bg-sidebar: #05101a; 
+            --text-main: #e0f2fe; 
+            --text-muted: #94a3b8; 
+            --accent: #0ea5e9; 
+            --accent-hover: #0284c7; 
+            --border: rgba(14,165,233,0.2); 
+        }
+        
+        :root[data-theme="lavender"] { 
+            --bg-main: #2e1065; 
+            --bg-card: #4c1d95; 
+            --bg-sidebar: #1e1b4b; 
+            --text-main: #f3e8ff; 
+            --text-muted: #c4b5fd; 
+            --accent: #a855f7; 
+            --accent-hover: #9333ea; 
+            --border: rgba(168, 85, 247, 0.3); 
+        }
+        
+        :root[data-theme="coffee"] { 
+            --bg-main: #3e2723; 
+            --bg-card: #4e342e; 
+            --bg-sidebar: #261410; 
+            --text-main: #efebe9; 
+            --text-muted: #bcaaa4; 
+            --accent: #8d6e63; 
+            --accent-hover: #795548; 
+            --border: rgba(141, 110, 99, 0.2); 
+        }
 
-        * { box-sizing: border-box; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-        body { background-color: var(--bg-main); color: var(--text-main); display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; transition: background-color 0.3s, color 0.3s; }
+        /* ==========================================================================
+           2. GLOBAL STYLES
+           ========================================================================== */
+        * { 
+            box-sizing: border-box; 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+        }
+        
+        body { 
+            background-color: var(--bg-main); 
+            color: var(--text-main); 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh; 
+            overflow-x: hidden; 
+            transition: background-color 0.3s, color 0.3s; 
+        }
 
-        .svg-icon { width: 20px; height: 20px; fill: currentColor; display: inline-block; vertical-align: middle; margin-right: 12px; }
+        .svg-icon { 
+            width: 20px; 
+            height: 20px; 
+            fill: currentColor; 
+            display: inline-block; 
+            vertical-align: middle; 
+            margin-right: 12px; 
+        }
         
-        /* --- HEADER --- */
-        .top-bar { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: var(--bg-sidebar); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-        .header-left { display: flex; align-items: center; gap: 15px; }
+        /* ==========================================================================
+           3. HEADER & NAVIGATION BAR
+           ========================================================================== */
+        .top-bar { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 15px 20px; 
+            background: var(--bg-sidebar); 
+            border-bottom: 1px solid var(--border); 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+        }
         
-        .nav-icon-btn { background: none; border: none; color: var(--text-main); cursor: pointer; display: flex; align-items: center; padding: 5px; border-radius: 5px; transition: background 0.2s; }
-        .nav-icon-btn:hover { background: var(--border); }
-        .app-title { font-size: 1.2rem; font-weight: 600; letter-spacing: 1px; color: var(--accent); }
+        .header-left { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+        }
         
-        .color-circle { width: 35px; height: 35px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: transform 0.2s, box-shadow 0.2s; }
-        .color-circle:hover { transform: scale(1.15); box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        .nav-icon-btn { 
+            background: none; 
+            border: none; 
+            color: var(--text-main); 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            padding: 5px; 
+            border-radius: 5px; 
+            transition: background 0.2s; 
+        }
         
-        .cc-light { background: #f8fafc; border: 1px solid #cbd5e1; } .cc-sakura { background: #ffb7b2; border: 1px solid #fb7185;} .cc-matcha { background: #81c784; border: 1px solid #4caf50;} .cc-sunrise { background: #ffb74d; border: 1px solid #ff9800;} .cc-dark { background: #0f172a; border: 1px solid #334155;} .cc-ocean { background: #0284c7; border: 1px solid #38bdf8;} .cc-lavender { background: #7e22ce; border: 1px solid #9333ea;} .cc-coffee { background: #4e342e; border: 1px solid #3e2723;}
+        .nav-icon-btn:hover { 
+            background: var(--border); 
+        }
+        
+        .app-title { 
+            font-size: 1.2rem; 
+            font-weight: 600; 
+            letter-spacing: 1px; 
+            color: var(--accent); 
+        }
+        
+        /* Palette Styles */
+        .color-circle { 
+            width: 35px; 
+            height: 35px; 
+            border-radius: 50%; 
+            cursor: pointer; 
+            border: 2px solid transparent; 
+            transition: transform 0.2s, box-shadow 0.2s; 
+        }
+        
+        .color-circle:hover { 
+            transform: scale(1.15); 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3); 
+        }
+        
+        .cc-light { background: #f8fafc; border: 1px solid #cbd5e1; } 
+        .cc-sakura { background: #ffb7b2; border: 1px solid #fb7185;} 
+        .cc-matcha { background: #81c784; border: 1px solid #4caf50;} 
+        .cc-sunrise { background: #ffb74d; border: 1px solid #ff9800;} 
+        .cc-dark { background: #0f172a; border: 1px solid #334155;} 
+        .cc-ocean { background: #0284c7; border: 1px solid #38bdf8;} 
+        .cc-lavender { background: #7e22ce; border: 1px solid #9333ea;} 
+        .cc-coffee { background: #4e342e; border: 1px solid #3e2723;}
 
-        /* --- SIDEBAR --- */
-        .sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100vh; background-color: var(--bg-sidebar); z-index: 999; padding-top: 20px; box-shadow: 4px 0 15px rgba(0,0,0,0.5); transition: left 0.3s ease; display: flex; flex-direction: column; border-right: 1px solid var(--border); }
+        /* ==========================================================================
+           4. SIDEBAR
+           ========================================================================== */
+        .sidebar { 
+            position: fixed; 
+            top: 0; 
+            left: -280px; 
+            width: 280px; 
+            height: 100vh; 
+            background-color: var(--bg-sidebar); 
+            z-index: 999; 
+            padding-top: 20px; 
+            box-shadow: 4px 0 15px rgba(0,0,0,0.5); 
+            transition: left 0.3s ease; 
+            display: flex; 
+            flex-direction: column; 
+            border-right: 1px solid var(--border); 
+        }
+        
         .sidebar.open { left: 0; }
-        .sidebar-header { padding: 0 20px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-        .nav-btn { display: flex; align-items: center; width: 100%; background: none; border: none; color: var(--text-muted); padding: 14px 25px; text-align: left; font-size: 15px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
-        .nav-btn:hover { color: var(--text-main); background: rgba(255,255,255,0.05); }
-        .nav-btn.active { color: var(--accent); border-right: 4px solid var(--accent); background: rgba(139, 92, 246, 0.08); }
-        .divider { height: 1px; background: var(--border); margin: 10px 20px; }
-        .overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 998; display: none; }
+        
+        .sidebar-header { 
+            padding: 0 20px 20px; 
+            border-bottom: 1px solid var(--border); 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            margin-bottom: 10px; 
+        }
+        
+        .nav-btn { 
+            display: flex; 
+            align-items: center; 
+            width: 100%; 
+            background: none; 
+            border: none; 
+            color: var(--text-muted); 
+            padding: 14px 25px; 
+            text-align: left; 
+            font-size: 15px; 
+            font-weight: 500; 
+            cursor: pointer; 
+            transition: all 0.2s; 
+        }
+        
+        .nav-btn:hover { 
+            color: var(--text-main); 
+            background: rgba(255,255,255,0.05); 
+        }
+        
+        .nav-btn.active { 
+            color: var(--accent); 
+            border-right: 4px solid var(--accent); 
+            background: rgba(139, 92, 246, 0.08); 
+        }
+        
+        .divider { 
+            height: 1px; 
+            background: var(--border); 
+            margin: 10px 20px; 
+        }
+        
+        .overlay { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100vw; 
+            height: 100vh; 
+            background: rgba(0,0,0,0.5); 
+            z-index: 998; 
+            display: none; 
+        }
+        
         .overlay.show { display: block; }
 
-        /* --- MAIN CONTENT --- */
-        .main-content { flex: 1; padding: 30px 20px; display: flex; flex-direction: column; align-items: center; width: 100%; }
-        .container { width: 100%; max-width: 800px; display: none; animation: fadeIn 0.4s ease; }
+        /* ==========================================================================
+           5. MAIN CONTENT CONTAINERS
+           ========================================================================== */
+        .main-content { 
+            flex: 1; 
+            padding: 30px 20px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            width: 100%; 
+        }
+        
+        .container { 
+            width: 100%; 
+            max-width: 800px; 
+            display: none; 
+            animation: fadeIn 0.4s ease; 
+        }
+        
         .container.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        h2 { font-weight: 500; margin-bottom: 25px; color: var(--text-main); }
+        
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        
+        h2 { 
+            font-weight: 500; 
+            margin-bottom: 25px; 
+            color: var(--text-main); 
+        }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 15px; }
-        .btn-bab { padding: 15px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-main); cursor: pointer; font-size: 14px; text-align: center; transition: all 0.2s; }
-        .btn-bab:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); 
+            gap: 15px; 
+        }
+        
+        .btn-bab { 
+            padding: 15px; 
+            border-radius: 10px; 
+            border: 1px solid var(--border); 
+            background: var(--bg-card); 
+            color: var(--text-main); 
+            cursor: pointer; 
+            font-size: 14px; 
+            text-align: center; 
+            transition: all 0.2s; 
+        }
+        
+        .btn-bab:hover { 
+            background: var(--accent); 
+            border-color: var(--accent); 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
+        }
 
-        /* PREVIEW KOTOBA */
-        .chapter-bar-container { background: var(--bg-card); padding: 20px; border-radius: 15px; border: 1px solid var(--border); margin-bottom: 25px; }
-        .chapter-bar { display: flex; overflow-x: auto; gap: 12px; padding-bottom: 5px; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+        /* ==========================================================================
+           6. PREVIEW KOTOBA
+           ========================================================================== */
+        .chapter-bar-container { 
+            background: var(--bg-card); 
+            padding: 20px; 
+            border-radius: 15px; 
+            border: 1px solid var(--border); 
+            margin-bottom: 25px; 
+        }
+        
+        .chapter-bar { 
+            display: flex; 
+            overflow-x: auto; 
+            gap: 12px; 
+            padding-bottom: 5px; 
+            white-space: nowrap; 
+            -webkit-overflow-scrolling: touch; 
+        }
+        
         .chapter-bar::-webkit-scrollbar { height: 6px; }
-        .chapter-bar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-        .btn-chip { width: 45px; height: 45px; flex-shrink: 0; border-radius: 10px; background: var(--bg-main); border: 1px solid var(--border); color: var(--text-main); font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; font-size: 15px; }
-        .btn-chip:hover, .btn-chip.active { background: var(--accent); color: white; border-color: var(--accent); transform: scale(1.05); }
+        .chapter-bar::-webkit-scrollbar-thumb { 
+            background: var(--border); 
+            border-radius: 4px; 
+        }
         
-        .preview-header { background: linear-gradient(135deg, #4c1d95, #e84393); padding: 30px 20px; border-radius: 15px; margin-bottom: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-        .preview-header h1 { font-size: 2rem; color: white; margin-bottom: 5px; }
-        .preview-header p { color: rgba(255,255,255,0.8); font-size: 14px; margin-bottom: 15px; }
-        .author-tag { color: white; font-weight: bold; font-size: 14px; display: inline-block; background: rgba(0,0,0,0.3); padding: 5px 12px; border-radius: 20px; }
-        .vocab-list { display: flex; flex-direction: column; gap: 15px; }
-        .vocab-card { background: var(--bg-card); border: 1px solid var(--border); padding: 15px 20px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; }
-        .vocab-jp { display: flex; flex-direction: column; }
-        .vocab-kanji { font-size: 1.8rem; font-family: var(--fc-font); color: var(--text-main); margin-bottom: 2px; }
-        .vocab-romaji { font-size: 12px; color: var(--accent); font-style: italic; letter-spacing: 0.5px; }
-        .vocab-id { text-align: right; display: flex; flex-direction: column; align-items: flex-end; }
-        .vocab-arti { font-size: 1.1rem; color: var(--text-main); font-weight: 500; }
-
-        /* --- STATISTIK --- */
-        .stats-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .stat-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
-        .stat-title { font-size: 18px; font-weight: bold; margin-bottom: 15px; color: var(--text-main); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
-        .chart-container { position: relative; height: 250px; width: 100%; }
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
-        .stat-card { background: var(--bg-card); padding: 20px; border-radius: 15px; border: 1px solid var(--border); text-align: center; }
-        .stat-value { font-size: 2.5rem; font-weight: 600; color: var(--accent); margin-bottom: 5px; }
-
-        /* --- SETTINGS --- */
-        .settings-section { background: var(--bg-card); border-radius: 15px; border: 1px solid var(--border); overflow: hidden; margin-bottom: 25px; }
-        .settings-header { padding: 15px 20px; background: rgba(0,0,0,0.2); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); font-weight: bold; border-bottom: 1px solid var(--border); }
-        .setting-item { padding: 20px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 10px; }
-        .setting-item:last-child { border-bottom: none; }
-        .setting-label { font-size: 14px; font-weight: 600; color: var(--text-main); }
-        .setting-sub { font-size: 12px; color: var(--text-muted); margin-bottom: 5px; }
+        .btn-chip { 
+            width: 45px; 
+            height: 45px; 
+            flex-shrink: 0; 
+            border-radius: 10px; 
+            background: var(--bg-main); 
+            border: 1px solid var(--border); 
+            color: var(--text-main); 
+            font-weight: bold; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            transition: all 0.2s; 
+            font-size: 15px; 
+        }
         
-        .form-input, select { width: 100%; padding: 12px 15px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-main); color: var(--text-main); outline: none; font-size: 14px; }
-        .form-input:focus, select:focus { border-color: var(--accent); }
-        .btn-primary { background: var(--accent); border: none; font-weight: 600; cursor: pointer; color:white; padding: 12px 20px; border-radius: 8px; transition: background 0.2s; width: 100%; }
-        .btn-primary:hover { background: var(--accent-hover); }
-        .btn-primary:disabled { background: var(--text-muted); cursor: not-allowed; }
+        .btn-chip:hover, .btn-chip.active { 
+            background: var(--accent); 
+            color: white; 
+            border-color: var(--accent); 
+            transform: scale(1.05); 
+        }
         
-        .flex-row { display: flex; align-items: center; justify-content: space-between; }
-        .switch { position: relative; display: inline-block; width: 44px; height: 24px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--bg-main); border: 1px solid var(--border); transition: .4s; border-radius: 24px; }
-        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: var(--text-muted); transition: .4s; border-radius: 50%; }
-        input:checked + .slider { background-color: var(--accent); border-color: var(--accent); }
-        input:checked + .slider:before { transform: translateX(20px); background-color: white; }
+        .preview-header { 
+            background: linear-gradient(135deg, #4c1d95, #e84393); 
+            padding: 30px 20px; 
+            border-radius: 15px; 
+            margin-bottom: 25px; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
+        }
+        
+        .preview-header h1 { 
+            font-size: 2rem; 
+            color: white; 
+            margin-bottom: 5px; 
+        }
+        
+        .preview-header p { 
+            color: rgba(255,255,255,0.8); 
+            font-size: 14px; 
+            margin-bottom: 15px; 
+        }
+        
+        .author-tag { 
+            color: white; 
+            font-weight: bold; 
+            font-size: 14px; 
+            display: inline-block; 
+            background: rgba(0,0,0,0.3); 
+            padding: 5px 12px; 
+            border-radius: 20px; 
+        }
+        
+        .vocab-list { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 15px; 
+        }
+        
+        .vocab-card { 
+            background: var(--bg-card); 
+            border: 1px solid var(--border); 
+            padding: 15px 20px; 
+            border-radius: 12px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        
+        .vocab-jp { 
+            display: flex; 
+            flex-direction: column; 
+        }
+        
+        .vocab-kanji { 
+            font-size: 1.8rem; 
+            font-family: var(--fc-font); 
+            color: var(--text-main); 
+            margin-bottom: 2px; 
+        }
+        
+        .vocab-romaji { 
+            font-size: 12px; 
+            color: var(--accent); 
+            font-style: italic; 
+            letter-spacing: 0.5px; 
+        }
+        
+        .vocab-id { 
+            text-align: right; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-end; 
+        }
+        
+        .vocab-arti { 
+            font-size: 1.1rem; 
+            color: var(--text-main); 
+            font-weight: 500; 
+        }
 
-        /* --- FLASHCARD UI --- */
-        .fc-top-bar { display: flex; justify-content: space-between; width: 100%; max-width: 450px; margin: 0 auto 15px; font-weight: bold; font-size: 1.1rem; }
-        .fc-counters span { padding: 5px 10px; border-radius: 6px; background: var(--bg-card); border: 1px solid var(--border); }
-        .fc-toggle { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 12px; }
-        .fc-toggle.active { background: var(--accent); color: white; border-color: var(--accent); }
+        /* ==========================================================================
+           7. STATISTIK
+           ========================================================================== */
+        .stats-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 20px; 
+        }
+        
+        .stat-box { 
+            background: var(--bg-card); 
+            border: 1px solid var(--border); 
+            border-radius: 12px; 
+            padding: 20px; 
+            margin-bottom: 20px; 
+        }
+        
+        .stat-title { 
+            font-size: 18px; 
+            font-weight: bold; 
+            margin-bottom: 15px; 
+            color: var(--text-main); 
+            border-bottom: 1px solid var(--border); 
+            padding-bottom: 10px; 
+        }
+        
+        .chart-container { 
+            position: relative; 
+            height: 250px; 
+            width: 100%; 
+        }
+        
+        .stats-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+            margin-bottom: 20px; 
+        }
+        
+        .stat-card { 
+            background: var(--bg-card); 
+            padding: 20px; 
+            border-radius: 15px; 
+            border: 1px solid var(--border); 
+            text-align: center; 
+        }
+        
+        .stat-value { 
+            font-size: 2.5rem; 
+            font-weight: 600; 
+            color: var(--accent); 
+            margin-bottom: 5px; 
+        }
 
-        .flashcard-container { width: 100%; max-width: 450px; height: 350px; margin: 0 auto; perspective: 1000px; cursor: pointer; }
-        .flashcard { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: transform 0.6s; }
+        /* ==========================================================================
+           8. SETTINGS
+           ========================================================================== */
+        .settings-section { 
+            background: var(--bg-card); 
+            border-radius: 15px; 
+            border: 1px solid var(--border); 
+            overflow: hidden; 
+            margin-bottom: 25px; 
+        }
+        
+        .settings-header { 
+            padding: 15px 20px; 
+            background: rgba(0,0,0,0.2); 
+            font-size: 12px; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            color: var(--accent); 
+            font-weight: bold; 
+            border-bottom: 1px solid var(--border); 
+        }
+        
+        .setting-item { 
+            padding: 20px; 
+            border-bottom: 1px solid var(--border); 
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px; 
+        }
+        
+        .setting-item:last-child { 
+            border-bottom: none; 
+        }
+        
+        .setting-label { 
+            font-size: 14px; 
+            font-weight: 600; 
+            color: var(--text-main); 
+        }
+        
+        .setting-sub { 
+            font-size: 12px; 
+            color: var(--text-muted); 
+            margin-bottom: 5px; 
+        }
+        
+        .form-input, select { 
+            width: 100%; 
+            padding: 12px 15px; 
+            border-radius: 8px; 
+            border: 1px solid var(--border); 
+            background: var(--bg-main); 
+            color: var(--text-main); 
+            outline: none; 
+            font-size: 14px; 
+        }
+        
+        .form-input:focus, select:focus { 
+            border-color: var(--accent); 
+        }
+        
+        .btn-primary { 
+            background: var(--accent); 
+            border: none; 
+            font-weight: 600; 
+            cursor: pointer; 
+            color: white; 
+            padding: 12px 20px; 
+            border-radius: 8px; 
+            transition: background 0.2s; 
+            width: 100%; 
+        }
+        
+        .btn-primary:hover { 
+            background: var(--accent-hover); 
+        }
+        
+        .btn-primary:disabled { 
+            background: var(--text-muted); 
+            cursor: not-allowed; 
+        }
+        
+        .flex-row { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+        }
+        
+        .switch { 
+            position: relative; 
+            display: inline-block; 
+            width: 44px; 
+            height: 24px; 
+        }
+        
+        .switch input { 
+            opacity: 0; 
+            width: 0; 
+            height: 0; 
+        }
+        
+        .slider { 
+            position: absolute; 
+            cursor: pointer; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0; 
+            background-color: var(--bg-main); 
+            border: 1px solid var(--border); 
+            transition: .4s; 
+            border-radius: 24px; 
+        }
+        
+        .slider:before { 
+            position: absolute; 
+            content: ""; 
+            height: 16px; 
+            width: 16px; 
+            left: 3px; 
+            bottom: 3px; 
+            background-color: var(--text-muted); 
+            transition: .4s; 
+            border-radius: 50%; 
+        }
+        
+        input:checked + .slider { 
+            background-color: var(--accent); 
+            border-color: var(--accent); 
+        }
+        
+        input:checked + .slider:before { 
+            transform: translateX(20px); 
+            background-color: white; 
+        }
+
+        /* ==========================================================================
+           9. FLASHCARD UI
+           ========================================================================== */
+        .fc-top-bar { 
+            display: flex; 
+            justify-content: space-between; 
+            width: 100%; 
+            max-width: 450px; 
+            margin: 0 auto 15px; 
+            font-weight: bold; 
+            font-size: 1.1rem; 
+        }
+        
+        .fc-counters span { 
+            padding: 5px 10px; 
+            border-radius: 6px; 
+            background: var(--bg-card); 
+            border: 1px solid var(--border); 
+        }
+        
+        .fc-toggle { 
+            background: var(--bg-card); 
+            border: 1px solid var(--border); 
+            color: var(--text-main); 
+            padding: 5px 10px; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-size: 12px; 
+        }
+        
+        .fc-toggle.active { 
+            background: var(--accent); 
+            color: white; 
+            border-color: var(--accent); 
+        }
+
+        .flashcard-container { 
+            width: 100%; 
+            max-width: 450px; 
+            height: 350px; 
+            margin: 0 auto; 
+            perspective: 1000px; 
+            cursor: pointer; 
+        }
+        
+        .flashcard { 
+            width: 100%; 
+            height: 100%; 
+            position: relative; 
+            transform-style: preserve-3d; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+            transition: transform 0.6s; 
+        }
+        
         .flashcard.flipped { transform: rotateY(180deg); }
-        .card-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 20px; padding: 30px; text-align: center; }
-        .card-front { background: var(--bg-card); border: 1px solid var(--border); }
-        .card-back { background: linear-gradient(135deg, var(--bg-card), var(--accent)); transform: rotateY(180deg); border: 1px solid var(--border); }
         
-        #fc-front { font-size: var(--fc-font-size); font-family: var(--fc-font); font-weight: bold; color: var(--text-main); margin-bottom: 10px; line-height: 1.2; word-break: break-all; }
-        #fc-furi { font-size: calc(var(--fc-font-size) / 3); color: rgba(255,255,255,0.95); margin-bottom: 5px; font-weight: 500; font-family: var(--fc-font); }
-        #fc-romaji { font-size: 1.2rem; color: rgba(255,255,255,0.75); font-style: italic; margin-bottom: 15px; letter-spacing: 1px; }
-        #fc-arti { font-size: 2rem; font-weight: 700; color: white; line-height: 1.3; }
+        .card-face { 
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            backface-visibility: hidden; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            border-radius: 20px; 
+            padding: 30px; 
+            text-align: center; 
+        }
+        
+        .card-front { 
+            background: var(--bg-card); 
+            border: 1px solid var(--border); 
+        }
+        
+        .card-back { 
+            background: linear-gradient(135deg, var(--bg-card), var(--accent)); 
+            transform: rotateY(180deg); 
+            border: 1px solid var(--border); 
+        }
+        
+        #fc-front { 
+            font-size: var(--fc-font-size); 
+            font-family: var(--fc-font); 
+            font-weight: bold; 
+            color: var(--text-main); 
+            margin-bottom: 10px; 
+            line-height: 1.2; 
+            word-break: break-all; 
+        }
+        
+        #fc-furi { 
+            font-size: calc(var(--fc-font-size) / 3); 
+            color: rgba(255,255,255,0.95); 
+            margin-bottom: 5px; 
+            font-weight: 500; 
+            font-family: var(--fc-font); 
+        }
+        
+        #fc-romaji { 
+            font-size: 1.2rem; 
+            color: rgba(255,255,255,0.75); 
+            font-style: italic; 
+            margin-bottom: 15px; 
+            letter-spacing: 1px; 
+        }
+        
+        #fc-arti { 
+            font-size: 2rem; 
+            font-weight: 700; 
+            color: white; 
+            line-height: 1.3; 
+        }
 
-        .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; max-width: 450px; margin: 30px auto 0; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
-        .actions.visible { opacity: 1; pointer-events: auto; }
-        .btn-action { padding: 15px; border: none; border-radius: 10px; color: white; font-weight: bold; font-size: 16px; cursor: pointer; transition: transform 0.1s; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        .actions { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+            max-width: 450px; 
+            margin: 30px auto 0; 
+            opacity: 0; 
+            pointer-events: none; 
+            transition: opacity 0.3s; 
+        }
+        
+        .actions.visible { 
+            opacity: 1; 
+            pointer-events: auto; 
+        }
+        
+        .btn-action { 
+            padding: 15px; 
+            border: none; 
+            border-radius: 10px; 
+            color: white; 
+            font-weight: bold; 
+            font-size: 16px; 
+            cursor: pointer; 
+            transition: transform 0.1s; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 5px; 
+        }
+        
         .btn-action:active { transform: scale(0.95); }
-        .btn-salah { background: var(--btn-salah); } .btn-benar { background: var(--btn-benar); }
+        .btn-salah { background: var(--btn-salah); } 
+        .btn-benar { background: var(--btn-benar); }
 
-        /* --- EXAM --- */
-        .exam-options { display: flex; flex-direction: column; gap: 20px; background: var(--bg-card); padding: 30px; border-radius: 15px; border: 1px solid var(--border); }
-        .mc-question { font-size: 3rem; text-align: center; margin-bottom: 30px; font-family: var(--fc-font); font-weight: bold; word-break: break-all; }
-        .mc-options { display: flex; flex-direction: column; gap: 12px; }
-        .mc-btn { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 18px; border-radius: 10px; font-size: 1.1rem; cursor: pointer; text-align: left; transition: all 0.2s; }
-        .mc-btn:hover { background: rgba(139, 92, 246, 0.1); border-color: var(--accent); }
-        .mc-btn.correct { background: var(--btn-benar); border-color: var(--btn-benar); color: white; }
-        .mc-btn.wrong { background: var(--btn-salah); border-color: var(--btn-salah); color: white; }
-        .mc-btn.correct-reveal { background: rgba(5, 150, 105, 0.3); border-color: var(--btn-benar); }
-
-        .exam-stats-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 15px; padding: 30px; text-align: center; }
-        .exam-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
-        .exam-detail-box { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; border: 1px solid var(--border); }
-        .exam-detail-val { font-size: 1.5rem; font-weight: bold; color: var(--text-main); }
-        .exam-detail-lbl { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
-
-        .btn-icon-only { width: 60px; height: 60px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--border); display: flex; justify-content: center; align-items: center; cursor: pointer; transition: all 0.2s; margin: 0 auto; }
-        .btn-icon-only:hover { background: var(--accent); border-color: var(--accent); }
-        .btn-icon-only svg { width: 30px; height: 30px; fill: var(--text-main); }
-
-        /* --- KFOTO UI (CAMERA OCR) --- */
-        .camera-wrapper { width: 100%; max-width: 450px; margin: 0 auto; }
-        .camera-box { width: 100%; aspect-ratio: 1/1; background: #000; border-radius: 15px; overflow: hidden; position: relative; margin-bottom: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); border: 2px solid var(--border); }
-        .kfoto-result-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 15px; padding: 25px 20px; text-align: center; margin-bottom: 20px; display: none; }
+        /* ==========================================================================
+           10. EXAM MODE
+           ========================================================================== */
+        .exam-options { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 20px; 
+            background: var(--bg-card); 
+            padding: 30px; 
+            border-radius: 15px; 
+            border: 1px solid var(--border); 
+        }
         
-        .log-card { background: var(--bg-card); border-left: 4px solid var(--accent); padding: 15px; border-radius: 8px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
-
-        /* --- MULTIPLE FABs --- */
-        .fab-container { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 900; transition: opacity 0.3s; }
-        .fab-btn { width: 55px; height: 55px; border-radius: 50%; background-color: var(--bg-card); border: 1px solid var(--border); display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); cursor: pointer; transition: all 0.3s ease; }
-        .fab-btn:hover { transform: scale(1.05); border-color: var(--accent); box-shadow: 0 4px 15px var(--accent); }
-        .fab-btn svg { width: 26px; height: 26px; fill: var(--text-muted); transition: fill 0.3s ease; }
-        .fab-btn:hover svg { fill: var(--accent); }
+        .mc-question { 
+            font-size: 3rem; 
+            text-align: center; 
+            margin-bottom: 30px; 
+            font-family: var(--fc-font); 
+            font-weight: bold; 
+            word-break: break-all; 
+        }
         
-        #btn-next-q { margin-top: 25px; padding: 15px; font-size: 1.1rem; }
+        .mc-options { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+        }
+        
+        .mc-btn { 
+            background: var(--bg-card); 
+            border: 1px solid var(--border); 
+            color: var(--text-main); 
+            padding: 18px; 
+            border-radius: 10px; 
+            font-size: 1.1rem; 
+            cursor: pointer; 
+            text-align: left; 
+            transition: all 0.2s; 
+        }
+        
+        .mc-btn:hover { 
+            background: rgba(139, 92, 246, 0.1); 
+            border-color: var(--accent); 
+        }
+        
+        .mc-btn.correct { 
+            background: var(--btn-benar); 
+            border-color: var(--btn-benar); 
+            color: white; 
+        }
+        
+        .mc-btn.wrong { 
+            background: var(--btn-salah); 
+            border-color: var(--btn-salah); 
+            color: white; 
+        }
+        
+        .mc-btn.correct-reveal { 
+            background: rgba(5, 150, 105, 0.3); 
+            border-color: var(--btn-benar); 
+        }
+
+        .exam-stats-box { 
+            background: var(--bg-card); 
+            border: 1px solid var(--border); 
+            border-radius: 15px; 
+            padding: 30px; 
+            text-align: center; 
+        }
+        
+        .exam-detail-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+            margin-bottom: 30px; 
+        }
+        
+        .exam-detail-box { 
+            background: rgba(0,0,0,0.2); 
+            padding: 15px; 
+            border-radius: 10px; 
+            border: 1px solid var(--border); 
+        }
+        
+        .exam-detail-val { 
+            font-size: 1.5rem; 
+            font-weight: bold; 
+            color: var(--text-main); 
+        }
+        
+        .exam-detail-lbl { 
+            font-size: 12px; 
+            color: var(--text-muted); 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            margin-top: 5px; 
+        }
+
+        .btn-icon-only { 
+            width: 60px; 
+            height: 60px; 
+            border-radius: 50%; 
+            background: var(--bg-card); 
+            border: 1px solid var(--border); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            cursor: pointer; 
+            transition: all 0.2s; 
+            margin: 0 auto; 
+        }
+        
+        .btn-icon-only:hover { 
+            background: var(--accent); 
+            border-color: var(--accent); 
+        }
+        
+        .btn-icon-only svg { 
+            width: 30px; 
+            height: 30px; 
+            fill: var(--text-main); 
+        }
+        
+        #btn-next-q { 
+            margin-top: 25px; 
+            padding: 15px; 
+            font-size: 1.1rem; 
+        }
+
+        /* ==========================================================================
+           11. ABOUT SECTION METROLIST UI
+           ========================================================================== */
+        
+        .about-header-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px 20px 20px;
+            text-align: center;
+            position: relative;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .about-logo-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            transform: rotate(45deg);
+        }
+
+        .about-logo-icon svg {
+            width: 35px;
+            height: 35px;
+            fill: white;
+            transform: rotate(-45deg);
+        }
+
+        .about-title-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .about-badge {
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--accent);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+
+        /* Animated Wavy Line */
+        .wave-container {
+            width: 100%;
+            height: 20px;
+            position: relative;
+            margin: 30px 0;
+            overflow: hidden;
+        }
+
+        .wave-svg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 200%;
+            animation: wave-move 3s linear infinite;
+        }
+
+        @keyframes wave-move {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .lead-dev-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .profile-avatar-large {
+            width: 120px;
+            height: 120px;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; /* Blob effect */
+            object-fit: cover;
+            margin: 0 auto 15px;
+            border: 4px solid var(--accent);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+            display: block;
+        }
+
+        .developer-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--text-main);
+            text-align: center;
+        }
+
+        /* Social Links Grid */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .social-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 15px 5px;
+            text-align: center;
+            color: var(--text-main);
+            text-decoration: none;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .social-btn:hover {
+            background: rgba(255,255,255,0.05);
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        .social-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-muted);
+            transition: fill 0.2s;
+        }
+
+        .social-btn:hover svg {
+            fill: var(--text-main);
+        }
+
+        .social-label {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* Bank Jago Card */
+        .support-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            transition: all 0.2s;
+        }
+        
+        .support-card:hover {
+            border-color: var(--accent);
+        }
+
+        .support-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .support-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(245, 124, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .support-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: #f57c00;
+        }
+
+        .support-text-main {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--text-main);
+        }
+
+        .support-text-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
+
+        .copy-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Community & Info List */
+        .info-list-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 10px 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-item svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .info-text-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .info-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .info-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Footer Palestine */
+        .palestine-footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
     </style>
 </head>
 <body>
@@ -216,9 +1241,6 @@
         </button>
         <button class="nav-btn" onclick="switchTab('statistik')">
             <svg class="svg-icon" viewBox="0 0 24 24"><path d="M10 20h4V4h-4v16zm-6 0h4v-8H4v8zM16 9v11h4V9h-4z"/></svg> Statistik
-        </button>
-        <button class="nav-btn" onclick="switchTab('history')">
-            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg> Histori KFoto
         </button>
         
         <div class="divider"></div>
@@ -266,40 +1288,6 @@
                 <button class="btn-action btn-benar" onclick="markCard(true)">BENAR</button>
             </div>
             <div id="status-msg" style="text-align:center; margin-top:20px; font-size:14px; color:var(--text-muted);">Kartu Ke-1</div>
-        </div>
-
-        <div id="kfoto" class="container">
-            <h2 style="text-align: center;">KFoto Scan</h2>
-            <div class="camera-wrapper">
-                
-                <div class="camera-box">
-                    <video id="video-stream" autoplay playsinline style="width:100%; height:100%; object-fit:cover;"></video>
-                </div>
-
-                <div id="kfoto-btn-capture-wrap" style="text-align:center; margin-bottom: 20px;">
-                    <button id="btn-scan-action" class="btn-primary" onclick="captureAndTranslate()" style="padding: 15px; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);">
-                        <svg viewBox="0 0 24 24" style="width:20px; fill:white; vertical-align:middle; margin-right:8px;"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg> 
-                        Scan Kanji
-                    </button>
-                </div>
-
-                <div id="kfoto-result" class="kfoto-result-box">
-                    <div id="kf-kanji" style="font-size: 3.5rem; font-family: var(--fc-font); font-weight: bold; color: var(--text-main); margin-bottom: 5px;"></div>
-                    <div id="kf-furi" style="font-size: 1.4rem; color: var(--text-muted); margin-bottom: 10px; font-family: var(--fc-font);"></div>
-                    <div id="kf-arti" style="font-size: 1.5rem; color: var(--accent); font-weight: bold;"></div>
-                </div>
-
-                <div class="actions" id="kfoto-actions" style="margin-top:0;">
-                    <button class="btn-action btn-salah" onclick="resetKFoto()">
-                        SELESAI
-                        <span style="font-size:10px; font-weight:normal;">Foto Baru</span>
-                    </button>
-                    <button class="btn-action btn-benar" onclick="saveKFotoLog()">
-                        SIMPAN
-                        <span style="font-size:10px; font-weight:normal;">Ke Histori</span>
-                    </button>
-                </div>
-            </div>
         </div>
 
         <div id="preview" class="container">
@@ -426,8 +1414,8 @@
                     <div class="stat-label">Total Kosakata</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value" id="stat-hafal" style="color:var(--btn-benar);">0</div>
-                    <div class="stat-label">Kosakata Dikuasai</div>
+                    <div class="stat-value" id="stat-hafal" style="color:var(--btn-benar);">-</div>
+                    <div class="stat-label">Sistem Flashcard Endless</div>
                 </div>
             </div>
 
@@ -439,14 +1427,6 @@
                         <canvas id="chartRetrievability"></canvas>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div id="history" class="container">
-            <h2>Histori KFoto (Log OCR)</h2>
-            <p style="font-size:13px; color:var(--text-muted); margin-bottom:20px;">Hasil scan dari kamera API OCR otomatis tercatat di sini.</p>
-            <div id="kfoto-log-list">
-                <div id="empty-log-msg" style="text-align:center; padding: 20px; color:var(--text-muted);">Belum ada histori foto.</div>
             </div>
         </div>
 
@@ -511,69 +1491,114 @@
                 </div>
             </div>
 
-            <div class="settings-section">
-                <div class="settings-header">Deteksi & Kamera API</div>
-                <div class="setting-item">
-                    <div>
-                        <div class="setting-label">API Key OCR (Google AI Studio)</div>
-                        <div class="setting-sub">Masukkan API Key agar fitur kamera pendeteksi Kanji bisa digunakan.</div>
-                    </div>
-                    <input type="password" id="set-api-key" class="form-input" placeholder="Masukkan API Key Anda...">
-                </div>
-            </div>
-
             <button class="btn-primary" onclick="saveSettings()">Simpan Pengaturan</button>
         </div>
 
         <div id="about" class="container">
-            <div style="text-align: center; padding: 40px 20px; background: var(--bg-card); border-radius: 15px; border: 1px solid var(--border); margin-bottom: 20px;">
-                <h1 style="letter-spacing:2px; font-weight:600;">KN5 APP</h1>
-                <div style="background: rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 20px; font-size: 12px; color: var(--text-muted); display: inline-block; margin-top: 10px;">4.0.0 · Full Gemini API Integration</div>
-            </div>
-            <div style="text-align: center; margin-bottom: 30px;">
-                <p style="color:var(--text-muted); font-size:12px; text-transform:uppercase; letter-spacing:1px; margin-bottom:15px; text-align:left;">Lead Developer</p>
-                <h2 style="margin-bottom:20px;">トリヤディ (Triyadi)</h2>
-            </div>
-        </div>
-    </div>
+            
+            <div class="about-header-card">
+                <div class="about-logo-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8z"/></svg>
+                </div>
+                <div class="about-title-text">KN5</div>
+                <div class="about-badge">1.0.0 • YOKOHAMA</div>
 
-    <div class="fab-container" id="fab-container">
-        <button class="fab-btn" onclick="openKFoto()" title="Buka Kamera KFoto OCR">
-            <svg viewBox="0 0 24 24"><path d="M19 8h-1.81l-1.83-2H8.64L6.81 8H5c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM12 18c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/><circle cx="12" cy="13" r="3.2"/></svg>
-        </button>
+                <div class="wave-container">
+                    <svg class="wave-svg" preserveAspectRatio="none" viewBox="0 0 1200 20">
+                        <path d="M0,10 Q50,20 100,10 T200,10 T300,10 T400,10 T500,10 T600,10 T700,10 T800,10 T900,10 T1000,10 T1100,10 T1200,10" fill="none" stroke="var(--text-muted)" stroke-width="2" opacity="0.3"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="lead-dev-label">Lead Developer</div>
+            <img src="6e430474e8d29666805cd412e599bfec.jpg" alt="Profile" class="profile-avatar-large">
+            <div class="developer-name">トリヤディ (Triyadi)</div>
+
+            <div class="social-grid">
+                <a href="https://www.instagram.com/dy_rnc/" target="_blank" class="social-btn">
+                    <svg viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2C22,19.4 19.4,22 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8C2,4.6 4.6,2 7.8,2M7.6,4C5.6,4 4,5.6 4,7.6V16.4C4,18.4 5.6,20 7.6,20H16.4C18.4,20 20,18.4 20,16.4V7.6C20,5.6 18.4,4 16.4,4H7.6M17.25,5.5C17.94,5.5 18.5,6.06 18.5,6.75C18.5,7.44 17.94,8 17.25,8C16.56,8 16,7.44 16,6.75C16,6.06 16.56,5.5 17.25,5.5M12,7C14.76,7 17,9.24 17,12C17,14.76 14.76,17 12,17C9.24,17 7,14.76 7,12C7,9.24 9.24,7 12,7M12,9C10.34,9 9,10.34 9,12C9,13.66 10.34,15 12,15C13.66,15 15,13.66 15,12C15,10.34 13.66,9 12,9Z"/></svg>
+                    <span class="social-label">Instagram</span>
+                </a>
+                <a href="https://www.threads.com/@dy_rnc?xmt=AQG0RMjq4WSsOTebjulJ9tRyuJQZlpjbRgmwabFkFEovvc4" target="_blank" class="social-btn">
+                    <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M15.5,12C15.5,13.9 13.9,15.5 12,15.5C10.1,15.5 8.5,13.9 8.5,12C8.5,10.1 10.1,8.5 12,8.5C13.9,8.5 15.5,10.1 15.5,12M12,6.5C8.9,6.5 6.5,8.9 6.5,12C6.5,15.1 8.9,17.5 12,17.5C15.1,17.5 17.5,15.1 17.5,12C17.5,8.9 15.1,6.5 12,6.5Z"/></svg>
+                    <span class="social-label">Threads</span>
+                </a>
+                <a href="https://wa.me/6283824588581" target="_blank" class="social-btn">
+                    <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M8.53 7.33C8.37 7.33 8.1 7.39 7.87 7.64C7.65 7.89 7 8.5 7 9.71C7 10.93 7.89 12.1 8 12.27C8.14 12.44 9.76 14.94 12.25 16C12.84 16.27 13.3 16.42 13.66 16.53C14.25 16.72 14.79 16.69 15.22 16.63C15.7 16.56 16.68 16.03 16.89 15.45C17.1 14.87 17.1 14.38 17.04 14.27C16.97 14.17 16.81 14.11 16.56 14C16.31 13.86 15.09 13.26 14.87 13.18C14.64 13.1 14.5 13.06 14.31 13.3C14.15 13.55 13.67 14.11 13.5 14.27C13.36 14.44 13.21 14.46 12.96 14.33C12.71 14.21 11.91 13.95 10.96 13.11C10.22 12.45 9.72 11.62 9.57 11.38C9.42 11.12 9.55 11 9.67 10.88C9.79 10.75 9.92 10.59 10.05 10.45C10.17 10.3 10.22 10.19 10.3 10C10.38 9.8 10.33 9.65 10.28 9.53C10.22 9.41 9.72 8.16 9.5 7.67C9.3 7.2 9.09 7.26 8.95 7.26C8.8 7.26 8.64 7.25 8.48 7.25C8.31 7.24 8.08 7.31 7.9 7.55"/></svg>
+                    <span class="social-label">WhatsApp</span>
+                </a>
+            </div>
+
+            <div class="support-card">
+                <div class="support-info">
+                    <div class="support-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                    </div>
+                    <div>
+                        <div class="support-text-main">Bank Jago</div>
+                        <div class="support-text-sub">No Rek: 107397547525</div>
+                    </div>
+                </div>
+                <button class="copy-btn" onclick="copyRekening()">Salin</button>
+            </div>
+
+            <div class="info-list-card">
+                <div class="info-item">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                    <div class="info-text-container">
+                        <div class="info-title">GNU General Public License v3.0</div>
+                        <div class="info-desc">Free, open-source software. You may use, study, share and improve it.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="palestine-footer">
+                This project stands with Palestine <img src="https://flagcdn.com/w20/ps.png" alt="Palestine" style="width: 18px; vertical-align: middle; border-radius: 2px; margin-left: 4px;">
+            </div>
+
+        </div>
+
     </div>
 
     <script>
-        // --- KONFIGURASI PENGATURAN V3 ---
+        // --- 1. KONFIGURASI PENGATURAN V3 ---
         let appSettings = {
-            apiKey: '',
             fontSize: '4.5rem',
             fontFamily: "'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             customFontBase64: null
         };
 
+        // Variable untuk menyimpan skor saat user melakukan sesi flashcard (Endless Mode)
         let sessionStats = { totalBenar: 0, totalSalah: 0 };
 
+        /**
+         * Fungsi untuk meload pengaturan yang sudah tersimpan
+         * di localStorage browser milik user.
+         */
         function loadSettings() {
             let saved = localStorage.getItem('kn5_settings_v3');
             if(saved) {
                 appSettings = JSON.parse(saved);
-                document.getElementById('set-api-key').value = appSettings.apiKey || '';
                 document.getElementById('set-font-size').value = appSettings.fontSize || '4.5rem';
                 document.getElementById('set-font-family').value = appSettings.fontFamily || "'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
             }
             applyThemeSettings(); 
         }
 
+        // Tampilkan input file hanya jika user memilih custom font
         document.getElementById('set-font-family').addEventListener('change', function() {
             document.getElementById('upload-font-div').style.display = (this.value === 'custom') ? 'flex' : 'none';
         });
 
+        /**
+         * Mengambil nilai dari form input dan merubahnya menjadi objek setting,
+         * kemudian menyimpannya ke localStorage.
+         */
         function saveSettings() {
-            appSettings.apiKey = document.getElementById('set-api-key').value;
             appSettings.fontSize = document.getElementById('set-font-size').value;
             appSettings.fontFamily = document.getElementById('set-font-family').value;
 
+            // Logika upload base64 font file lokal
             if (appSettings.fontFamily === 'custom') {
                 const file = document.getElementById('set-font-file').files[0];
                 if (file) {
@@ -589,12 +1614,18 @@
             finalizeSave();
         }
 
+        /**
+         * Menyimpan final setting ke localstorage dan memberikan alert.
+         */
         function finalizeSave() {
             localStorage.setItem('kn5_settings_v3', JSON.stringify(appSettings));
             applyThemeSettings();
             alert("Pengaturan Berhasil Disimpan!");
         }
 
+        /**
+         * Mengimplementasikan variabel font setting ke elemen CSS.
+         */
         function applyThemeSettings() {
             document.documentElement.style.setProperty('--fc-font-size', appSettings.fontSize);
             
@@ -619,13 +1650,79 @@
             }
         }
 
-        // --- AUTO ROMAJI CONVERTER ---
-        const romajiMap = { 'あ':'a','い':'i','う':'u','え':'e','お':'o','か':'ka','き':'ki','く':'ku','け':'ke','こ':'ko','さ':'sa','し':'shi','す':'su','せ':'se','そ':'so','た':'ta','ち':'chi','つ':'tsu','て':'te','と':'to','な':'na','に':'ni','ぬ':'nu','ね':'ne','の':'no','は':'ha','ひ':'hi','ふ':'fu','へ':'he','ほ':'ho','ま':'ma','み':'mi','む':'mu','め':'me','も':'mo','や':'ya','ゆ':'yu','よ':'yo','ら':'ra','り':'ri','る':'ru','れ':'re','ろ':'ro','わ':'wa','を':'wo','ん':'n', 'が':'ga','ぎ':'gi','ぐ':'gu','げ':'ge','ご':'go','ざ':'za','じ':'ji','ず':'zu','ぜ':'ze','ぞ':'zo','だ':'da','ぢ':'ji','づ':'zu','で':'de','ど':'do','ば':'ba','び':'bi','ぶ':'bu','べ':'be','ぼ':'bo','ぱ':'pa','ぴ':'pi','ぷ':'pu','ぺ':'pe','ぽ':'po', 'きゃ':'kya','きゅ':'kyu','きょ':'kyo','しゃ':'sha','しゅ':'shu','しょ':'sho','ちゃ':'cha','ちゅ':'chu','ちょ':'cho','にゃ':'nya','にゅ':'nyu','にょ':'nyo','ひゃ':'hya','ひゅ':'hyu','ひょ':'hyo','みゃ':'mya','みゅ':'myu','みょ':'myo','りゃ':'rya','りゅ':'ryu','りょ':'ryo', 'ぎゃ':'gya','ぎゅ':'gyu','ぎょ':'gyo','じゃ':'ja','じゅ':'ju','じょ':'jo','びゃ':'bya','びゅ':'byu','びょ':'byo','ぴゃ':'pya','ぴゅ':'pyu','ぴょ':'pyo', 'ア':'a','イ':'i','ウ':'u','エ':'e','オ':'o','カ':'ka','キ':'ki','ク':'ku','ケ':'ke','コ':'ko','サ':'sa','シ':'shi','ス':'su','セ':'se','ソ':'so','タ':'ta','チ':'chi','ツ':'tsu','テ':'te','ト':'to','ナ':'na','ニ':'ni','ヌ':'nu','ネ':'ne','ノ':'no','ハ':'ha','ヒ':'hi','フ':'fu','ヘ':'he','ホ':'ho','マ':'ma','ミ':'mi','ム':'mu','メ':'me','モ':'mo','ヤ':'ya','ユ':'yu','ヨ':'yo','ラ':'ra','リ':'ri','ル':'ru','レ':'re','ロ':'ro','ワ':'wa','ヲ':'wo','ン':'n' };
-        function toRomaji(kanaStr) { let result = ''; for(let i=0; i<kanaStr.length; i++) { let double = kanaStr.substring(i, i+2); if(romajiMap[double]) { result += romajiMap[double]; i++; } else if(romajiMap[kanaStr[i]]) { result += romajiMap[kanaStr[i]]; } else if(kanaStr[i] === 'っ' || kanaStr[i] === 'ッ') { if(i+1 < kanaStr.length && romajiMap[kanaStr[i+1]]) { result += romajiMap[kanaStr[i+1]][0]; } } else if(kanaStr[i] === 'ー') { result += '-'; } else { result += kanaStr[i]; } } return result; }
+        // --- 2. AUTO ROMAJI CONVERTER ---
+        // Pemetaan hiragana dan katakana untuk mengubahnya ke huruf romaji.
+        const romajiMap = { 
+            'あ':'a','い':'i','う':'u','え':'e','お':'o',
+            'か':'ka','き':'ki','く':'ku','け':'ke','こ':'ko',
+            'さ':'sa','し':'shi','す':'su','せ':'se','そ':'so',
+            'た':'ta','ち':'chi','つ':'tsu','て':'te','と':'to',
+            'な':'na','に':'ni','ぬ':'nu','ね':'ne','の':'no',
+            'は':'ha','ひ':'hi','ふ':'fu','へ':'he','ほ':'ho',
+            'ま':'ma','み':'mi','む':'mu','め':'me','も':'mo',
+            'や':'ya','ゆ':'yu','よ':'yo',
+            'ら':'ra','り':'ri','る':'ru','れ':'re','ろ':'ro',
+            'わ':'wa','を':'wo','ん':'n', 
+            
+            'が':'ga','ぎ':'gi','ぐ':'gu','げ':'ge','ご':'go',
+            'ざ':'za','じ':'ji','ず':'zu','ぜ':'ze','ぞ':'zo',
+            'だ':'da','ぢ':'ji','づ':'zu','で':'de','ど':'do',
+            'ば':'ba','び':'bi','ぶ':'bu','べ':'be','ぼ':'bo',
+            'ぱ':'pa','ぴ':'pi','ぷ':'pu','ぺ':'pe','ぽ':'po', 
+            
+            'きゃ':'kya','きゅ':'kyu','きょ':'kyo',
+            'しゃ':'sha','しゅ':'shu','しょ':'sho',
+            'ちゃ':'cha','ちゅ':'chu','ちょ':'cho',
+            'にゃ':'nya','にゅ':'nyu','にょ':'nyo',
+            'ひゃ':'hya','ひゅ':'hyu','ひょ':'hyo',
+            'みゃ':'mya','みゅ':'myu','みょ':'myo',
+            'りゃ':'rya','りゅ':'ryu','りょ':'ryo', 
+            
+            'ぎゃ':'gya','ぎゅ':'gyu','ぎょ':'gyo',
+            'じゃ':'ja','じゅ':'ju','じょ':'jo',
+            'びゃ':'bya','びゅ':'byu','びょ':'byo',
+            'ぴゃ':'pya','ぴゅ':'pyu','ぴょ':'pyo', 
+            
+            'ア':'a','イ':'i','ウ':'u','エ':'e','オ':'o',
+            'カ':'ka','キ':'ki','ク':'ku','ケ':'ke','コ':'ko',
+            'サ':'sa','シ':'shi','ス':'su','セ':'se','ソ':'so',
+            'タ':'ta','チ':'chi','ツ':'tsu','テ':'te','ト':'to',
+            'ナ':'na','ニ':'ni','ヌ':'nu','ネ':'ne','ノ':'no',
+            'ハ':'ha','ヒ':'hi','フ':'fu','ヘ':'he','ホ':'ho',
+            'マ':'ma','ミ':'mi','ム':'mu','メ':'me','モ':'mo',
+            'ヤ':'ya','ユ':'yu','ヨ':'yo',
+            'ラ':'ra','リ':'ri','ル':'ru','レ':'re','ロ':'ro',
+            'ワ':'wa','ヲ':'wo','ン':'n' 
+        };
+        
+        /**
+         * Mengambil string hiragana dan mengembalikan representasi string romajinya.
+         */
+        function toRomaji(kanaStr) { 
+            let result = ''; 
+            for(let i=0; i<kanaStr.length; i++) { 
+                let double = kanaStr.substring(i, i+2); 
+                if(romajiMap[double]) { 
+                    result += romajiMap[double]; 
+                    i++; 
+                } else if(romajiMap[kanaStr[i]]) { 
+                    result += romajiMap[kanaStr[i]]; 
+                } else if(kanaStr[i] === 'っ' || kanaStr[i] === 'ッ') { 
+                    if(i+1 < kanaStr.length && romajiMap[kanaStr[i+1]]) { 
+                        result += romajiMap[kanaStr[i+1]][0]; 
+                    } 
+                } else if(kanaStr[i] === 'ー') { 
+                    result += '-'; 
+                } else { 
+                    result += kanaStr[i]; 
+                } 
+            } 
+            return result; 
+        }
 
         let db = {};
 
-        // --- MENU & THEME LOGIC ---
+        // --- 3. MENU & THEME LOGIC ---
         function toggleMenu() {
             document.getElementById('sidebar').classList.toggle('open');
             document.getElementById('overlay').classList.toggle('show');
@@ -635,9 +1732,15 @@
             document.documentElement.setAttribute('data-theme', themeName);
             localStorage.setItem('theme', themeName);
         }
-        if(localStorage.getItem('theme')) setTheme(localStorage.getItem('theme'));
+        if(localStorage.getItem('theme')) {
+            setTheme(localStorage.getItem('theme'));
+        }
 
-        // Tab Navigation
+        /**
+         * Sistem tab navigation utama.
+         * Menghapus kelas 'active' dari semua tab lalu memberikannya 
+         * ke ID yang dipanggil saat ini.
+         */
         function switchTab(tabId) {
             document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -648,21 +1751,24 @@
             if(event && event.currentTarget && event.currentTarget.classList) {
                 event.currentTarget.classList.add('active');
             }
-            if(document.getElementById('sidebar').classList.contains('open')) toggleMenu();
+            if(document.getElementById('sidebar').classList.contains('open')) {
+                toggleMenu();
+            }
 
-            document.getElementById('fab-container').style.display = (tabId === 'home' || tabId === 'history') ? 'flex' : 'none';
-
-            let isFocusedMode = (tabId === 'flashcard-app' || tabId === 'kfoto');
+            // Ganti Hamburger Menu menjadi tombol kembali jika masuk Flashcard mode
+            let isFocusedMode = (tabId === 'flashcard-app');
             document.getElementById('btn-hamburger').style.display = isFocusedMode ? 'none' : 'flex';
             document.getElementById('btn-back').style.display = isFocusedMode ? 'flex' : 'none';
-
-            if(tabId !== 'kfoto') stopCamera();
 
             if(tabId === 'statistik') updateCharts();
             if(tabId === 'exam') validateExamMax();
         }
 
-        // --- FETCH DATA ---
+        // --- 4. FETCH KOTOBA DATA ---
+        /**
+         * Mengambil data text kosakata secara lokal dari server lalu 
+         * melakukan ekstraksi untuk di olah ke dalam array JavaScript.
+         */
         async function loadData() {
             try {
                 const response = await fetch('kosakata_bab1_25_lengkap.txt');
@@ -680,17 +1786,36 @@
         }
 
         function parseData(text) {
-            const lines = text.split('\n'); let currentBab = 0;
+            const lines = text.split('\n'); 
+            let currentBab = 0;
+            
             lines.forEach(line => {
-                line = line.trim(); if(!line) return;
+                line = line.trim(); 
+                if(!line) return;
+                
+                // Cek awalan Pelajaran untuk memisahkan array db object
                 if (line.toLowerCase().startsWith('pelajaran')) {
-                    currentBab = parseInt(line.replace(/\D/g, '')); db[currentBab] = [];
+                    currentBab = parseInt(line.replace(/\D/g, '')); 
+                    db[currentBab] = [];
                 } else if (line.includes(' : ') && currentBab !== 0) {
-                    let parts = line.split(' : '); let jepang = parts[0].trim(); let arti = parts[1].trim();
-                    let kanji = "-"; let hiragana = jepang;
+                    let parts = line.split(' : '); 
+                    let jepang = parts[0].trim(); 
+                    let arti = parts[1].trim();
+                    let kanji = "-"; 
+                    let hiragana = jepang;
+                    
                     let match = jepang.match(/(.+?)\s*\((.+?)\)/);
-                    if(match) { kanji = match[1].trim(); hiragana = match[2].trim(); }
-                    db[currentBab].push({ kanji: kanji, hiragana: hiragana, romaji: toRomaji(hiragana), arti: arti });
+                    if(match) { 
+                        kanji = match[1].trim(); 
+                        hiragana = match[2].trim(); 
+                    }
+                    
+                    db[currentBab].push({ 
+                        kanji: kanji, 
+                        hiragana: hiragana, 
+                        romaji: toRomaji(hiragana), 
+                        arti: arti 
+                    });
                 }
             });
         }
@@ -699,7 +1824,6 @@
             let total = 0;
             Object.values(db).forEach(babArray => { total += babArray.length; });
             document.getElementById('stat-total').innerText = total;
-            document.getElementById('stat-hafal').innerText = "-"; 
         }
 
         function initGrids() {
@@ -707,7 +1831,9 @@
             const pvChapterBar = document.getElementById('pv-chapter-bar');
             const exSelect = document.getElementById('exam-range');
             
-            fcGrid.innerHTML = ''; pvChapterBar.innerHTML = ''; exSelect.innerHTML = '<option value="all">Keseluruhan (Bab 1 - 25)</option>';
+            fcGrid.innerHTML = ''; 
+            pvChapterBar.innerHTML = ''; 
+            exSelect.innerHTML = '<option value="all">Keseluruhan (Bab 1 - 25)</option>';
 
             Object.keys(db).forEach(bab => {
                 let btnFc = document.createElement('button'); 
@@ -728,24 +1854,32 @@
                 opt.innerText = `Hanya Bab ${bab}`; 
                 exSelect.appendChild(opt);
             });
-            exSelect.innerHTML += `<option value="1-4">Evaluasi Bab 1-4</option><option value="5-8">Evaluasi Bab 5-8</option><option value="21-25">Evaluasi Bab 21-25</option>`;
+            
+            exSelect.innerHTML += `
+                <option value="1-4">Evaluasi Bab 1-4</option>
+                <option value="5-8">Evaluasi Bab 5-8</option>
+                <option value="21-25">Evaluasi Bab 21-25</option>
+            `;
+            
             if(Object.keys(db).length > 0) showPreview(Object.keys(db)[0]);
         }
 
-        // --- PREVIEW ---
+        // --- 5. PREVIEW KOTOBA LOGIC ---
         function showPreview(bab) {
             document.querySelectorAll('.btn-chip').forEach(b => b.classList.remove('active'));
             let activeChip = document.getElementById('chip-bab-' + bab);
             if(activeChip) activeChip.classList.add('active');
 
             document.getElementById('pv-title').innerText = `Pelajaran ${bab}`;
-            const listDiv = document.getElementById('pv-list'); listDiv.innerHTML = '';
+            const listDiv = document.getElementById('pv-list'); 
+            listDiv.innerHTML = '';
             
             if(!db[bab]) return;
             
             db[bab].forEach((item) => {
                 let mainText = item.kanji !== "-" ? item.kanji : item.hiragana;
                 let subText = item.kanji !== "-" ? item.hiragana : "";
+                
                 listDiv.innerHTML += `
                     <div class="vocab-card">
                         <div class="vocab-jp">
@@ -760,7 +1894,7 @@
             });
         }
 
-        // --- ALGORITMA FLASHCARD (Endless Loop) ---
+        // --- 6. ALGORITMA FLASHCARD (ENDLESS LOOP) ---
         let fcCards = [];
         let fcIndex = 0;
         let isFcRandom = false;
@@ -784,12 +1918,14 @@
             
             if(!db[bab] || db[bab].length === 0) return;
             
+            // Masukan list array
             fcCards = [...db[bab]];
             fcIndex = 0;
             sessionStats.totalBenar = 0;
             sessionStats.totalSalah = 0;
             updateCounters();
             
+            // Jika dalam mode random maka akan memanggil function math random sorting array
             if(isFcRandom) fcCards.sort(() => 0.5 - Math.random());
             
             showNextCard();
@@ -813,13 +1949,18 @@
             document.getElementById('fc-arti').innerText = currentCard.arti;
         }
 
-        function flipCard() { if(fcCards.length > 0) document.getElementById('card').classList.toggle('flipped'); }
+        function flipCard() { 
+            if(fcCards.length > 0) {
+                document.getElementById('card').classList.toggle('flipped'); 
+            }
+        }
 
         function markCard(isCorrect) {
             if (isCorrect) sessionStats.totalBenar++;
             else sessionStats.totalSalah++;
             
             fcIndex++;
+            // Karena endless loop, jika sudah melebih index kartu di reset kembali ke 0
             if (fcIndex >= fcCards.length) {
                 fcIndex = 0;
                 if (isFcRandom) fcCards.sort(() => 0.5 - Math.random());
@@ -828,11 +1969,14 @@
             showNextCard();
         }
 
-        // --- STATISTIK ---
+        // --- 7. STATISTIK LOGIC ---
         let chartRetrievabilityInstance;
 
         function updateCharts() {
-            if(chartRetrievabilityInstance) chartRetrievabilityInstance.destroy();
+            if(chartRetrievabilityInstance) {
+                chartRetrievabilityInstance.destroy();
+            }
+            
             const ctx2 = document.getElementById('chartRetrievability').getContext('2d');
             chartRetrievabilityInstance = new Chart(ctx2, {
                 type: 'bar',
@@ -845,7 +1989,15 @@
                         borderRadius: 4
                     }]
                 },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { ticks: { color: '#94a3b8' } }, x: { ticks: { color: '#94a3b8' } } } }
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    plugins: { legend: { display: false } }, 
+                    scales: { 
+                        y: { ticks: { color: '#94a3b8' } }, 
+                        x: { ticks: { color: '#94a3b8' } } 
+                    } 
+                }
             });
         }
 
@@ -861,7 +2013,7 @@
             html2pdf().set(opt).from(element).save();
         }
 
-        // --- EXAM LOGIC ---
+        // --- 8. EXAM (UJIAN) LOGIC ---
         let examQuestions = []; 
         let currentQIndex = 0; 
         let score = 0; 
@@ -875,7 +2027,9 @@
                 Object.values(db).forEach(arr => pool = pool.concat(arr));
             } else if (range.includes("-")) { 
                 let [start, end] = range.split("-").map(Number); 
-                for(let i=start; i<=end; i++) if(db[i]) pool = pool.concat(db[i]); 
+                for(let i=start; i<=end; i++) {
+                    if(db[i]) pool = pool.concat(db[i]); 
+                }
             } else if(db[range]) {
                 pool = [...db[range]];
             }
@@ -917,7 +2071,9 @@
             let limitVal = (range === "all" || range.includes("-")) ? 50 : 30;
             let finalCount = Math.min(reqCount, currentExamPool.length, limitVal);
 
-            if(currentExamPool.length < 4) return alert("Kosakata belum mencukupi untuk membuat soal.");
+            if(currentExamPool.length < 4) {
+                return alert("Kosakata belum mencukupi untuk membuat soal.");
+            }
             
             examQuestions = currentExamPool.sort(() => 0.5 - Math.random()).slice(0, finalCount); 
             currentQIndex = 0; 
@@ -955,7 +2111,9 @@
         }
 
         function loadQuestion() {
-            if (currentQIndex >= examQuestions.length) return finishExam();
+            if (currentQIndex >= examQuestions.length) {
+                return finishExam();
+            }
 
             let dir = document.getElementById('exam-direction').value;
             let diff = document.getElementById('exam-difficulty').value;
@@ -981,11 +2139,13 @@
             });
 
             options.sort(() => 0.5 - Math.random()); 
-            let optsDiv = document.getElementById('mc-opts'); optsDiv.innerHTML = '';
+            let optsDiv = document.getElementById('mc-opts'); 
+            optsDiv.innerHTML = '';
             
             options.forEach(opt => {
                 let btn = document.createElement('button');
-                btn.className = 'mc-btn'; btn.innerText = opt.text;
+                btn.className = 'mc-btn'; 
+                btn.innerText = opt.text;
                 btn.onclick = () => handleAnswer(btn, opt.isCorrect);
                 optsDiv.appendChild(btn);
             });
@@ -1039,145 +2199,21 @@
         }
 
         function abortExam() {
-            if(confirm("Yakin ingin mengakhiri ujian ini?")) finishExam();
-        }
-
-        // --- FULL GEMINI API OCR LOGIC ---
-        let videoStream = null;
-        let tempKFotoData = null;
-
-        function openKFoto() {
-            if (!appSettings.apiKey || appSettings.apiKey.trim() === '') {
-                alert("Harap isi API Key terlebih dahulu di menu Pengaturan untuk menggunakan fitur KFoto.");
-                switchTab('settings');
-                return;
-            }
-            
-            switchTab('kfoto');
-            startCamera();
-        }
-
-        async function startCamera() {
-            try {
-                // Minta akses kamera belakang kalau ada
-                const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
-                document.getElementById('video-stream').srcObject = stream;
-                videoStream = stream;
-            } catch (err) {
-                alert("Kamera tidak dapat diakses: " + err.message);
+            if(confirm("Yakin ingin mengakhiri ujian ini?")) {
+                finishExam();
             }
         }
 
-        function stopCamera() {
-            if(videoStream) {
-                videoStream.getTracks().forEach(track => track.stop());
-                videoStream = null;
-            }
+        // --- 9. FUNGSI COPY CLIPBOARD ---
+        function copyRekening() {
+            navigator.clipboard.writeText("107397547525").then(() => {
+                alert("Nomor Rekening Jago berhasil disalin ke clipboard!");
+            }).catch(err => {
+                alert("Gagal menyalin nomor rekening.");
+            });
         }
 
-        async function captureAndTranslate() {
-            if (!videoStream) return alert("Kamera belum siap atau tidak diizinkan.");
-
-            // 1. Tangkap gambar dari elemen video ke elemen canvas (tersembunyi)
-            const video = document.getElementById('video-stream');
-            const canvas = document.createElement('canvas');
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-            // 2. Ubah gambar jadi format Base64 (Hapus header 'data:image/jpeg;base64,')
-            const base64Image = canvas.toDataURL('image/jpeg', 0.8).split(',')[1];
-
-            // Ubah UI tombol jadi loading
-            const btnWrap = document.getElementById('kfoto-btn-capture-wrap');
-            btnWrap.innerHTML = '<span style="color:var(--accent); font-weight:bold;">Sedang mendeteksi pakai AI... Tunggu bentar...</span>';
-
-            try {
-                // 3. Request ke API Gemini Flash (Versi paling cepet)
-                // GANTI KE v1 (BUKAN v1beta)
-                const url = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${appSettings.apiKey}`;
-
-                const response = await fetch(url, {
-                method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{
-                            parts: [
-                                { text: "Extract the most prominent Japanese word or kanji from this image. Return ONLY a valid JSON object with keys: 'kanji', 'furi', 'arti'. Example: {\"kanji\": \"会社\", \"furi\": \"かいしゃ\", \"arti\": \"Perusahaan\"}. No markdown." },
-                                { inlineData: { mimeType: "image/jpeg", data: base64Image } }
-                            ]
-                        }]
-                    })
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.error.message || "Gagal nyambung ke API");
-                }
-
-                const data = await response.json();
-                // 4. Parsing response
-                let aiText = data.candidates[0].content.parts[0].text;
-                aiText = aiText.replace(/```json/g, '').replace(/```/g, '').trim();
-    
-                tempKFotoData = JSON.parse(aiText);
-                
-                // 5. Tampilkan hasilnya ke UI
-                document.getElementById('kf-kanji').innerText = tempKFotoData.kanji;
-                document.getElementById('kf-furi').innerText = tempKFotoData.furi;
-                document.getElementById('kf-arti').innerText = tempKFotoData.arti;
-
-                document.getElementById('kfoto-result').style.display = 'block';
-                document.getElementById('kfoto-actions').style.display = 'grid';
-                btnWrap.style.display = 'none';
-
-            } catch (err) {
-                alert("Waduh error nih: " + err.message + "\n\nPastikan foto jelas atau API key bener.");
-                resetKFoto(); // Balikin ke tombol jepret kalau error
-            }
-        }
-
-        function resetKFoto() {
-            tempKFotoData = null;
-            document.getElementById('kfoto-result').style.display = 'none';
-            document.getElementById('kfoto-actions').style.display = 'none';
-            
-            const btnWrap = document.getElementById('kfoto-btn-capture-wrap');
-            btnWrap.style.display = 'block';
-            btnWrap.innerHTML = `
-                <button class="btn-primary" onclick="captureAndTranslate()" style="padding: 15px; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);">
-                    <svg viewBox="0 0 24 24" style="width:20px; fill:white; vertical-align:middle; margin-right:8px;"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg> 
-                    Scan Kanji
-                </button>
-            `;
-        }
-
-        function saveKFotoLog() {
-            if(!tempKFotoData) return;
-            
-            const logContainer = document.getElementById('kfoto-log-list');
-            const emptyMsg = document.getElementById('empty-log-msg');
-            if(emptyMsg) emptyMsg.style.display = 'none';
-            
-            let html = `
-                <div class="log-card" style="animation: fadeIn 0.4s ease;">
-                    <div>
-                        <div style="font-size:2rem; font-weight:bold; font-family:var(--fc-font);">${tempKFotoData.kanji}</div>
-                        <div style="font-size:12px; color:var(--text-muted);">Hasil Scan API • Baru saja</div>
-                    </div>
-                    <div style="text-align:right;">
-                        <div style="font-size:1rem; font-weight:600; color:var(--accent);">${tempKFotoData.arti}</div>
-                        <div style="font-size:12px; color:var(--text-muted);">${tempKFotoData.furi}</div>
-                    </div>
-                </div>
-            `;
-            logContainer.insertAdjacentHTML('afterbegin', html);
-            
-            alert("Berhasil disimpan ke Histori!");
-            resetKFoto();
-        }
-
+        // Panggil fetch text txt pas web terbuka pertama kali
         loadData();
     </script>
 </body>

@@ -1,8 +1,8 @@
 Pelajaran 1
-わたし : saya
-あなた : Anda
+私 (わたし) : saya
+貴方 (あなた) : Anda
 あの 人 (あの ひと／あの かた) : orang itu, beliau (あのかた adalah bentuk sopan dari あのひと)
-〜さん : Sdr. ~, Bapak ~, Ibu ~
+〜さん : Sdr., Bapak ~, Ibu ~
 〜ちゃん : (akhiran untuk anak laki-laki dan perempuan sebagai pengganti ~さん)
 〜人 (〜じん) : orang ~ (warga negara)
 先生 (せんせい) : guru, dosen (tidak dipakai menyebutkan pekerjaan sendiri)
@@ -15,7 +15,7 @@ Pelajaran 1
 研究者 (けんきゅうしゃ) : peneliti
 大学 (だいがく) : universitas
 病院 (びょういん) : rumah sakit
-だれ (どなた) : siapa (どなた adalah bentuk sopan dari だれ)
+誰 (だれ / どなた) : siapa (どなた adalah bentuk sopan dari だれ)
 ー歳 (ーさい) : - tahun
 何歳 (なんさい／おいくつ) : umur berapa (おいくつ adalah bentuk sopan dari なんさい)
 はい : ya
@@ -59,10 +59,10 @@ Pelajaran 2
 鉛筆 (えんぴつ) : pensil
 ボールペン : bolpoin
 シャープペンシル : pensil mekanik, pensil isi ulang
-かぎ : kunci
+鍵 (かぎ) : kunci
 時計 (とけい) : jam, arloji
 傘 (かさ) : payung
-かばん : tas
+鞄 (かばん) : tas
 CD : CD
 テレビ : televisi
 ラジオ : radio
@@ -93,7 +93,7 @@ Pelajaran 3
 ここ : sini
 そこ : situ
 あそこ : sana
-どこ : (di) mana
+何処 (どこ) : (di) mana
 こちら : sini (bentuk sopan dari ここ)
 そちら : situ (bentuk sopan dari そこ)
 あちら : sana (bentuk sopan dari あそこ)
@@ -113,7 +113,7 @@ Pelajaran 3
 電話 (でんわ) : telepon
 [お]国 ([お]くに) : negara, negeri
 会社 (かいしゃ) : perusahaan
-うち : rumah
+家 (うち) : rumah
 靴 (くつ) : sepatu
 ネクタイ : dasi
 ワイン : anggur
@@ -122,11 +122,11 @@ Pelajaran 3
 ー階 (ーかい／ーがい) : lantai -, tingkat -
 何階 (なんがい) : lantai berapa, tingkat berapa
 ー円 (ーえん) : - yen
-いくら : berapa
+幾ら (いくら) : berapa
 百 (ひゃく) : ratus
 千 (せん) : ribu
 万 (まん) : puluh ribu
-すみません。 : Maaf./Permisi.
+済みません。 (すみません。) : Maaf./Permisi.
 どうも。 : Terima kasih.
 いらっしゃいませ。 : Selamat datang./Bisa saya bantu?
 [〜を] 見せて ください。 ([〜を] みせて ください。) : Tolong perlihatkan [~].
@@ -163,12 +163,12 @@ Pelajaran 4
 朝 (あさ) : pagi
 昼 (ひる) : siang
 晩 (夜) (ばん／よる) : malam
-おととい : dua hari yang lalu, kemarin lusa
-きのう : kemarin
-きょう : hari ini
-あした : besok
-あさって : lusa
-けさ : pagi ini, tadi pagi
+一昨日 (おととい) : dua hari yang lalu, kemarin lusa
+昨日 (きのう) : kemarin
+今日 (きょう) : hari ini
+明日 (あした) : besok
+明後日 (あさって) : lusa
+今朝 (けさ) : pagi ini, tadi pagi
 今晩 (こんばん) : malam ini, nanti malam
 休み (やすみ) : istirahat, cuti, libur
 昼休み (ひるやすみ) : istirahat siang
@@ -252,7 +252,7 @@ Pelajaran 5
 ２４日 (にじゅうよっか) : tanggal dua puluh empat, dua puluh empat hari
 ー日 (ーにち) : tanggal -, - hari
 何日 (なんにち) : tanggal berapa, berapa hari
-いつ : kapan
+何時 (いつ) : kapan
 誕生日 (たんじょうび) : hari ulang tahun
 そうですね。 : Ya, betul./Ya, begitulah.
 [どうも] ありがとう ございました。 : Terima kasih [banyak].
@@ -277,10 +277,10 @@ Pelajaran 6
 撮ります [写真を〜] (とります [しゃしんを〜]) : mengambil [foto]
 します : mengerjakan, melakukan, berbuat
 会います [友達に〜] (あいます [ともだちに〜]) : bertemu [dengan teman]
-ごはん : nasi
-朝ごはん (あさごはん) : sarapan
-昼ごはん (ひるごはん) : makan siang
-晩ごはん (ばんごはん) : makan malam
+ご飯 (ごはん) : nasi
+朝ご飯 (あさごはん) : sarapan
+昼ご飯 (ひるごはん) : makan siang
+晩ご飯 (ばんごはん) : makan malam
 パン : roti
 卵 (たまご) : telur
 肉 (にく) : daging
@@ -294,7 +294,7 @@ Pelajaran 6
 ジュース : jus, sari buah
 ビール : bir
 [お]酒 ([お]さけ) : minuman keras, sake
-たばこ : rokok
+煙草 (たばこ) : rokok
 手紙 (てがみ) : surat
 レポート : laporan
 写真 (しゃしん) : foto
@@ -306,9 +306,9 @@ Pelajaran 6
 サッカー : sepak bola
 [お]花見 ([お]はなみ) : (O) Hanami, menikmati bunga Sakura
 何 (なに) : apa
-いっしょに : bersama-sama
-ちょっと : sebentar, sedikit
-いつも : selalu
+一緒に (いっしょに) : bersama-sama
+一寸 (ちょっと) : sebentar, sedikit
+何時も (いつも) : selalu
 時々 (ときどき) : kadang-kadang
 それから : setelah itu, kemudian
 ええ : ya
@@ -328,11 +328,11 @@ Pelajaran 7
 習います (ならいます) : belajar
 電話をかけます (でんわをかけます) : menelepon
 手 (て) : tangan
-はし : sumpit
+箸 (はし) : sumpit
 スプーン : sendok
 ナイフ : pisau
 フォーク : garpu
-はさみ : gunting
+鋏 (はさみ) : gunting
 パソコン : komputer, PC
 ケータイ : HP (Handphone)
 メール : e-mail
@@ -356,31 +356,31 @@ Pelajaran 7
 もう : sudah
 まだ : belum
 これから : mulai dari sekarang
-すてきですね : [~] bagus ya. / [~] indah ya.
+素敵ですね (すてきですね) : [~] bagus ya. / [~] indah ya.
 いらっしゃい : Selamat datang.
 どうぞ お上がり ください (どうぞ おあがり ください) : Silakan masuk.
 失礼します (しつれいします) : Permisi.
 いかがですか : Bagaimana [~]? (ditawarkan sesuatu)
-いただきます : Selamat makan!
-ごちそうさま[でした] (ごちそうさまでした) : Terima kasih atas hidangannya.
+頂きます (いただきます) : Selamat makan!
+御馳走様[でした] (ごちそうさまでした) : Terima kasih atas hidangannya.
 スペイン : Spanyol
 
 Pelajaran 8
 ハンサム[な] : tampan, gagah, ganteng
-きれい[な] : cantik, bersih
+綺麗[な] (きれい[な]) : cantik, bersih
 静か[な] (しずか[な]) : sunyi, tenang
-にぎやか[な] : ramai
+賑やか[な] (にぎやか[な]) : ramai
 有名[な] (ゆうめい[な]) : terkenal
 親切[な] (しんせつ[な]) : baik hati
 元気[な] (げんき[な]) : sehat walafiat
 暇[な] (ひま[な]) : senggang
 便利[な] (べんり[な]) : praktis
-すてき[な] : bagus
+素敵[な] (すてき[な]) : bagus
 大きい (おおきい) : besar
 小さい (ちいさい) : kecil
 新しい (あたらしい) : baru
 古い (ふるい) : lama, tua
-いい (よい) : baik, bagus
+良い (いい／よい) : baik, bagus
 悪い (わるい) : buruk, jelek
 暑い、熱い (あつい) : panas
 寒い (さむい) : dingin (suhu udara)
@@ -390,8 +390,8 @@ Pelajaran 8
 高い (たかい) : mahal, tinggi
 安い (やすい) : murah
 低い (ひくい) : rendah
-おもしろい : menarik
-おいしい : enak
+面白い (おもしろい) : menarik
+美味しい (おいしい) : enak
 忙しい (いそがしい) : sibuk
 楽しい (たのしい) : senang
 白い (しろい) : putih
@@ -409,8 +409,8 @@ Pelajaran 8
 [お]仕事 ([お]しごと) : pekerjaan
 どう : bagaimana
 どんな〜 : yang bagaimana 〜
-とても : sangat, 〜 sekali
-あまり : kurang begitu 〜 (negatif)
+迚も (とても) : sangat, 〜 sekali
+余り (あまり) : kurang begitu 〜 (negatif)
 そして : kemudian, dan
 〜が、〜 : 〜, tetapi 〜
 お元気ですか。 (おげんきですか。) : Apa kabar?
@@ -428,7 +428,7 @@ Pelajaran 8
 「七人の侍」 (「しちにんのさむらい」) : Tujuh orang Samurai (film)
 
 Pelajaran 9
-わかります : mengerti
+分かります (わかります) : mengerti
 あります : ada, mempunyai
 好き[な] (すき[な]) : suka, gemar
 嫌い[な] (きらい[な]) : tidak suka
@@ -464,14 +464,14 @@ Pelajaran 9
 奥さん (おくさん) : istri (menyebutkan istri orang lain)
 妻 / 家内 (つま / かない) : istri (sendiri)
 子ども (こども) : anak
-よく : dengan baik
-だいたい : kira-kira
-たくさん : banyak
+良く (よく) : dengan baik
+大体 (だいたい) : kira-kira
+沢山 (たくさん) : banyak
 少し (すこし) : sedikit
 全然 (ぜんぜん) : sama sekali (diikuti kalimat negatif)
 早く、速く (はやく) : dengan cepat
 〜から : karena ~, sebab ~
-どうして : kenapa
+何故 (どうして) : kenapa
 貸して ください (かして ください) : Tolong pinjamkan.
 いいですよ : Boleh.
 残念です[が] (ざんねんです[が]) : sayang sekali
@@ -483,8 +483,8 @@ Pelajaran 9
 
 Pelajaran 10
 あります : ada (benda mati)
-います : ada (makhluk hidup)
-いろいろ[な] : berbagai
+居ます (います) : ada (makhluk hidup)
+色々[な] (いろいろ[な]) : berbagai
 男の 人 (おとこの ひと) : orang laki-laki
 女の 人 (おんなの ひと) : orang perempuan
 男の 子 (おとこの こ) : anak laki-laki
@@ -516,7 +516,7 @@ ATM : ATM, Anjungan Tunai Mandiri
 上 (うえ) : atas
 下 (した) : bawah
 前 (まえ) : depan, muka
-うしろ : belakang
+後ろ (うしろ) : belakang
 右 (みぎ) : kanan
 左 (ひだり) : kiri
 中 (なか) : dalam
@@ -533,7 +533,7 @@ ATM : ATM, Anjungan Tunai Mandiri
 アジアストア : pasar swalayan fiksi
 
 Pelajaran 11
-います : ada, mempunyai [anak] / ada [di Jepang]
+居ます (います) : ada, mempunyai [anak] / ada [di Jepang]
 かかります : memakan, perlu (untuk waktu dan uang)
 休みます (やすみます) : tidak masuk [kerja]
 １つ (ひとつ) : satu (menghitung barang)
@@ -546,15 +546,15 @@ Pelajaran 11
 ８つ (やっつ) : delapan
 ９つ (ここのつ) : sembilan
 10 (とお) : sepuluh
-いくつ : berapa
+幾つ (いくつ) : berapa
 １人 (ひとり) : seorang
 ２人 (ふたり) : dua orang
 〜人 (〜にん) : ~ orang
 〜台 (〜だい) : ~ buah (mesin/mobil)
 〜枚 (〜まい) : ~ lembar, helai (kertas/perangko)
 〜回 (〜かい) : ~ kali
-りんご : apel
-みかん : jeruk
+林檎 (りんご) : apel
+蜜柑 (みかん) : jeruk
 サンドイッチ : sandwich
 カレー[ライス] : [nasi dan] kare
 アイスクリーム : es krim
@@ -581,7 +581,7 @@ Pelajaran 11
 〜ぐらい : kira-kira ~
 どのくらい : berapa lama
 全部で (ぜんぶで) : semuanya
-みんな : semua
+皆 (みんな) : semua
 〜だけ : hanya ~, ~ saja
 かしこまりました : Baik.
 いい [お]天気ですね (いい [お]てんきですね) : Cuacanya bagus ya.
@@ -608,7 +608,7 @@ Pelajaran 12
 辛い (からい) : pedas
 重い (おもい) : berat
 軽い (かるい) : ringan
-いい [コーヒーが〜] : lebih baik [kopi]
+良い [コーヒーが〜] (いい [コーヒーが〜]) : lebih baik [kopi]
 季節 (きせつ) : musim
 春 (はる) : musim semi
 夏 (なつ) : musim panas
@@ -636,12 +636,12 @@ Pelajaran 12
 紅葉 (もみじ) : maple, daun berubah merah
 どちら : yang mana
 どちらも : dua-duanya, yang mana juga
-いちばん : paling
+一番 (いちばん) : paling
 ずっと : jauh lebih
 初めて (はじめて) : untuk pertama kali
 ただいま : Saya kembali. / Saya pulang.
 おかえりなさい (お帰りなさい) : Sudah pulang ya.
-わあ、すごい ひとですね (わあ、すごい 人ですね) : Wah, banyak orang.
+わあ、凄い 人ですね (わあ、すごい ひとですね) : Wah, banyak orang.
 疲れました (つかれました) : Lelah.
 祇園祭 (ぎおんまつり) : Perayaan Gion (di Kyoto)
 ホンコン : Hong Kong (香港)
@@ -671,14 +671,14 @@ Pelajaran 13
 [お]正月 ([お]しょうがつ) : tahun baru
 〜ごろ : sekitar ~, kira-kira
 何か (なにか) : sesuatu
-どこか : suatu tempat
-のどが かわきます : haus (ditulis のどが かわきました jika sudah haus)
-おなかが すきます : lapar (ditulis おなかが すきました jika sudah lapar)
+何処か (どこか) : suatu tempat
+喉が 渇きます (のどが かわきます) : haus (ditulis 喉が 渇きました jika sudah haus)
+お腹が 空きます (おなかが すきます) : lapar (ditulis お腹が 空きました jika sudah lapar)
 そう しましょう : Ya, mari. (menyetujui ajakan)
-ごちゅうもんは？ (ご注文は？) : Mau pesan apa?
+ご注文は？ (ごちゅうもんは？) : Mau pesan apa?
 定食 (ていしょく) : menu paket
 牛どん (ぎゅうどん) : Gyudon
-しょうしょう おまち ください (少々 お待ち ください) : Tunggu [sebentar]. (halus)
+少々 お待ち ください (しょうしょう おまち ください) : Tunggu [sebentar]. (halus)
 〜で ございます : (bentuk halus dari です)
 別々に (べつべつに) : sendiri-sendiri, masing-masing
 アキックス : perusahaan fiksi
@@ -718,19 +718,19 @@ Pelajaran 14
 答え (こたえ) : jawaban
 読み方 (よみかた) : cara membaca
 〜方 (〜かた) : cara ~
-まっすぐ : lurus
+真っ直ぐ (まっすぐ) : lurus
 ゆっくり : pelan-pelan, istirahat dengan baik
-すぐ : segera, langsung
-また : lagi
-あとで : nanti
+直ぐ (すぐ) : segera, langsung
+又 (また) : lagi
+後で (あとで) : nanti
 もう 少し (もう すこし) : sedikit lagi
 もう 〜 : ~ lagi
 さあ : mari (mengajak lawan bicara)
 あれ？ : Ah? (merasa heran/aneh)
-しんごうを みぎへ まがって ください (信号を 右へ 曲がって ください) : Tolong belok ke kanan di lampu lalu lintas.
-これで おねがいします (これで お願いします) : Minta dengan ini.
-おつり (お釣り) : uang kembalian
-みどり ちょう (みどり 町) : kota fiksi
+信号を 右へ 曲がって ください (しんごうを みぎへ まがって ください) : Tolong belok ke kanan di lampu lalu lintas.
+これで お願いします (これで おねがいします) : Minta dengan ini.
+お釣り (おつり) : uang kembalian
+みどり 町 (みどり ちょう) : kota fiksi
 
 Pelajaran 15
 置きます (おきます) : meletakkan, menaruh
@@ -751,7 +751,7 @@ Pelajaran 15
 高校 (こうこう) : SMA
 歯医者 (はいしゃ) : dokter gigi
 独身 (どくしん) : bujangan, belum berkeluarga
-すみません : Maaf.
+済みません (すみません) : Maaf.
 皆さん (みなさん) : semuanya, bapak-bapak dan ibu-ibu sekalian
 思い出します (おもいだします) : teringat
 いらっしゃいます : bentuk hormat dari います (ada/tinggal)
@@ -787,7 +787,7 @@ Pelajaran 16
 鼻 (はな) : hidung
 口 (くち) : mulut
 歯 (は) : gigi
-おなか : perut
+お腹 (おなか) : perut
 足 (あし) : kaki
 背 (せ) : punggung
 サービス : pelayanan
@@ -800,10 +800,10 @@ Pelajaran 16
 どうやって : dengan cara bagaimana
 どの〜 : ~ yang mana (lebih dari 3 barang)
 どれ : mana (lebih dari 3 barang)
-すごいですね : Hebat.
+凄いですね (すごいですね) : Hebat.
 [いいえ、] まだまだです : [Tidak], belum memuaskan.
 お引き出しですか (おひきだしですか) : Mau menarik uang?
-まず : pertama-tama, terlebih dahulu
+先ず (まず) : pertama-tama, terlebih dahulu
 次に (つぎに) : kemudian
 キャッシュカード : kartu ATM
 暗証番号 (あんしょうばんごう) : PIN
@@ -821,7 +821,7 @@ JR : JR (perusahaan rel kereta listrik)
 Pelajaran 17
 覚えます (おぼえます) : mengingat, menghafal
 忘れます (わすれます) : lupa
-なくします : kehilangan
+失くします (なくします) : kehilangan
 払います (はらいます) : membayar
 返します (かえします) : mengembalikan
 出かけます (でかけます) : pergi, keluar, berangkat
@@ -832,7 +832,7 @@ Pelajaran 17
 残業します (ざんぎょうします) : melembur
 出張します (しゅっちょうします) : dinas
 飲みます [薬を〜] (のみます [くすりを〜]) : minum [obat]
-入ります [おふろに〜] (はいります [おふろに〜]) : mandi, masuk [ofuro]
+入ります [お風呂に〜] (はいります [おふろに〜]) : mandi, masuk [ofuro]
 大切[な] (たいせつ[な]) : penting, bernilai, berharga
 大丈夫[な] (だいじょうぶ[な]) : tidak apa-apa, tidak masalah
 危ない (あぶない) : berbahaya
@@ -841,7 +841,7 @@ Pelajaran 17
 熱 (ねつ) : demam
 病気 (びょうき) : sakit
 薬 (くすり) : obat
-[お]ふろ : mandi, kamar mandi
+[お]風呂 ([お]ふろ) : mandi, kamar mandi
 上着 (うわぎ) : baju, jaket
 下着 (したぎ) : pakaian dalam
 ２、３日 (２、３にち) : dua atau tiga hari
@@ -851,12 +851,12 @@ Pelajaran 17
 どう しましたか : Kenapa? / Ada masalah apa?
 のど : kerongkongan
 [〜が] 痛いです ([〜が] いたいです) : [~] sakit
-かぜ : masuk angin
+風邪 (かぜ) : masuk angin
 それから : dan, kemudian
 お大事に (おだいじに) : Semoga lekas sembuh.
 
 Pelajaran 18
-できます II : dapat, bisa, mampu
+出来ます (できます) II : dapat, bisa, mampu
 洗います (あらいます) I : mencuci
 弾きます (ひきます) I : bermain (untuk bermain alat musik senar dan piano)
 歌います (うたいます) I : bernyanyi, menyanyi
@@ -881,10 +881,10 @@ Pelajaran 18
 〈会話〉
 特に (とくに) : terutama, khususnya
 へえ : Betul ya?/Benar ya?/Masa! (digunakan ketika terkagum atau terkejut)
-それは おもしろいですね。 : Itu menarik ya.
-なかなか : jarang, tidak mudah (diikuti bentuk negatif)
-ほんとうですか。 : Betul?/Benar?
-ぜひ : benar-benar, mesti
+それは 面白いですね。 (それは おもしろいですね。) : Itu menarik ya.
+中々 (なかなか) : jarang, tidak mudah (diikuti bentuk negatif)
+本当ですか。 (ほんとうですか。) : Betul?/Benar?
+是非 (ぜひ) : benar-benar, mesti
 故郷 (ふるさと) : Furusato (judul lagu. Artinya kampung halaman)
 ビートルズ : The Beatles
 秋葉原 (あきはばら) : nama daerah di Tokyo
@@ -906,7 +906,7 @@ Pelajaran 19
 調子 (ちょうし) : kondisi
 一度 (いちど) : sekali
 一度も (いちども) : sekali-kali, satu kali pun (diikuti bentuk negatif)
-だんだん : berangsur-angsuran, lama-kelamaan
+段々 (だんだん) : berangsur-angsuran, lama-kelamaan
 もうすぐ : tidak lama lagi
 おかげさまで : atas berkat (ucapan yang digunakan ketika menyatakan rasa terima kasih atas bantuan atau kebaikan hati dari orang)
 でも : tetapi
@@ -928,7 +928,7 @@ Pelajaran 20
 〜君 (〜くん) : Sdr. ~ (bentuk informal untuk さん, sering digunakan untuk nama anak laki-laki)
 うん : ya (bentuk informal dari はい)
 ううん : tidak, bukan (bentuk informal dari いいえ)
-ことば : kata, bahasa
+言葉 (ことば) : kata, bahasa
 着物 (きもの) : kimono (pakaian tradisional Jepang)
 ビザ : VISA
 初め (はじめ) : awal, mula-mula
@@ -937,13 +937,13 @@ Pelajaran 20
 そっち : situ (ungkapan informal dari kata そちら)
 あっち : sana (ungkapan informal dari kata あちら)
 どっち : mana (ungkapan informal untuk kata どちら)
-みんなで : kita semua, kita sama-sama
+皆で (みんなで) : kita semua, kita sama-sama
 〜けど : ~ tetapi (ungkapan informal dari が)
-おなかが いっぱいです : sudah kenyang
+お腹が 一杯です (おなかが いっぱいです) : sudah kenyang
 
 〈会話〉
 よかったら : kalau mau, kalau suka
-いろいろ : macam-macam
+色々 (いろいろ) : macam-macam
 
 Pelajaran 21
 思います (おもいます) I : mengira, berpikir
@@ -956,11 +956,11 @@ Pelajaran 21
 辞めます、やめます II [会社を〜] : berhenti [kerja]
 気を つけます (きを つけます) II : berwaspada, berhati-hati
 留学します (りゅうがくします) III : studi di luar negeri
-むだ[な] : sia-sia, tidak berguna
+無駄[な] (むだ[な]) : sia-sia, tidak berguna
 不便 [な] (ふべん [な]) : tidak praktis
-すごい : hebat, bukan main (digunakan ketika menyatakan kejutan atau kekaguman)
-ほんとう : betul, benar
-うそ : bohong
+凄い (すごい) : hebat, bukan main (digunakan ketika menyatakan kejutan atau kekaguman)
+本当 (ほんとう) : betul, benar
+嘘 (うそ) : bohong
 自動車 (じどうしゃ) : mobil
 交通 (こうつう) : lalu lintas
 物価 (ぶっか) : harga barang
@@ -993,7 +993,7 @@ Pelajaran 22
 都合 (つごう) : kondisi
 よく : sering kali
 えーと : Itu...
-おめでとう [ございます]。 : Selamat. (digunakan untuk hari ulang tahun, upacara pernikahan, dan tahun baru)
+お目出度う [ございます] (おめでとう [ございます])。 : Selamat. (digunakan untuk hari ulang tahun, upacara pernikahan, dan tahun baru)
 
 〈会話〉
 お探しですか。 (おさがしですか。) : Mencari apa?
@@ -1047,8 +1047,8 @@ Pelajaran 24
 紹介します (しょうかいします) III : memperkenalkan
 案内します (あんないします) III : mengantarkan
 説明します (せつめいします) III : menjelaskan, menerangkan
-おじいさん／おじいちゃん : kakek
-おばあさん／おばあちゃん : nenek
+お祖父さん／お爺ちゃん (おじいさん／おじいちゃん) : kakek
+お祖母さん／お婆ちゃん (おばあさん／おばあちゃん) : nenek
 準備 (じゅんび) : persiapan (〜[を] します : mempersiapkan, menyiapkan)
 引っ越し (ひっこし) : pindah rumah (〜[を] します : pindah, memindahkan)
 [お]菓子 ([お]かし) : kue
@@ -1057,7 +1057,7 @@ Pelajaran 24
 自分で (じぶんで) : dengan sendiri
 
 〈会話〉
-ほかに : selain, yang lain
+他に (ほかに) : selain, yang lain
 母の日 (ははのひ) : hari Ibu
 
 Pelajaran 25
@@ -1072,7 +1072,7 @@ Pelajaran 25
 意味 (いみ) : arti, makna
 もしもし : halo (digunakan ketika menelepon)
 転勤 (てんきん) : pindah ke kantor cabang lain atau jabatan lain (〜します : pindah kantor)
-こと : hal (〜の こと : hal ~)
+事 (こと) : hal (〜の 事 : hal ~)
 暇 (ひま) : waktu luang
 [いろいろ] お世話になりました。 ([いろいろ] おせわになりました。) : Terima kasih banyak bantuan Anda yang telah diberikan.
 頑張ります (がんばります) I : berusaha, bekerja keras

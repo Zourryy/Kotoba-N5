@@ -47,7 +47,7 @@
         .hamburger-btn:hover { background: var(--border); }
         .app-title { font-size: 1.2rem; font-weight: 600; letter-spacing: 1px; color: var(--accent); }
         
-        /* Palette Styles (Dipindah ke Settings) */
+        /* Palette Styles (Di Pengaturan) */
         .color-circle { width: 35px; height: 35px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: transform 0.2s, box-shadow 0.2s; }
         .color-circle:hover { transform: scale(1.15); box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
         .color-circle:active { transform: scale(0.8); }
@@ -85,46 +85,13 @@
 
         /* PREVIEW KOTOBA */
         .chapter-bar-container { background: var(--bg-card); padding: 20px; border-radius: 15px; border: 1px solid var(--border); margin-bottom: 25px; }
-        
-        /* Modifikasi untuk Scroll Horizontal sesuai gambar */
-        .chapter-bar { 
-            display: flex; 
-            overflow-x: auto; 
-            gap: 12px; 
-            padding-bottom: 12px; 
-            white-space: nowrap; 
-            -webkit-overflow-scrolling: touch; 
-        }
+        .chapter-bar { display: flex; overflow-x: auto; gap: 12px; padding-bottom: 5px; white-space: nowrap; -webkit-overflow-scrolling: touch; }
         .chapter-bar::-webkit-scrollbar { height: 6px; }
         .chapter-bar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
         
         .btn-chip { width: 45px; height: 45px; flex-shrink: 0; border-radius: 10px; background: var(--bg-main); border: 1px solid var(--border); color: var(--text-main); font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; font-size: 15px; }
         .btn-chip:hover, .btn-chip.active { background: var(--accent); color: white; border-color: var(--accent); transform: scale(1.05); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
         
-        /* Bar Kategori (Sifat, Benda, dsb) */
-        .category-filter-bar {
-            display: flex;
-            overflow-x: auto;
-            gap: 12px;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid var(--border);
-            padding-bottom: 5px;
-        }
-        .category-filter-bar::-webkit-scrollbar { display: none; }
-        .cat-chip {
-            display: flex; align-items: center; gap: 8px;
-            padding: 8px 16px; border-radius: 20px;
-            border: 1px solid var(--border);
-            background: var(--bg-main);
-            color: var(--text-muted);
-            font-size: 13px; font-weight: 500;
-            cursor: pointer; white-space: nowrap;
-            transition: all 0.2s;
-        }
-        .cat-chip:hover { border-color: var(--accent); color: var(--text-main); }
-        .cat-dot { width: 10px; height: 10px; border-radius: 50%; }
-
         .preview-header { background: linear-gradient(135deg, #4c1d95, #e84393); padding: 30px 20px; border-radius: 15px; margin-bottom: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
         .preview-header h1 { font-size: 2rem; color: white; margin-bottom: 5px; }
         .preview-header p { color: rgba(255,255,255,0.8); font-size: 14px; margin-bottom: 15px; }
@@ -138,7 +105,7 @@
         .vocab-arti { font-size: 1.1rem; color: var(--text-main); font-weight: 500; }
         .vocab-tag { background: rgba(139, 92, 246, 0.2); color: var(--accent); font-size: 10px; padding: 3px 8px; border-radius: 4px; margin-top: 5px; }
 
-        /* --- STATISTIK ANKI-STYLE --- */
+        /* --- STATISTIK --- */
         .stats-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .stat-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
         .stat-title { font-size: 18px; font-weight: bold; margin-bottom: 15px; color: var(--text-main); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
@@ -168,7 +135,7 @@
         input:checked + .slider { background-color: var(--accent); border-color: var(--accent); }
         input:checked + .slider:before { transform: translateX(20px); background-color: white; }
 
-        /* --- FLASHCARD UI ANKI --- */
+        /* --- FLASHCARD UI --- */
         .fc-top-bar { display: flex; justify-content: space-between; width: 100%; max-width: 450px; margin: 0 auto 15px; font-weight: bold; font-size: 1.1rem; }
         .fc-counters span { padding: 5px 10px; border-radius: 6px; background: var(--bg-card); border: 1px solid var(--border); }
         .fc-toggle { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 12px; }
@@ -181,7 +148,7 @@
         .card-front { background: var(--bg-card); border: 1px solid var(--border); }
         .card-back { background: linear-gradient(135deg, var(--bg-card), var(--accent)); transform: rotateY(180deg); border: 1px solid var(--border); }
         
-        #fc-front { font-size: var(--fc-font-size); font-family: var(--fc-font); font-weight: bold; color: var(--text-main); margin-bottom: 10px; line-height: 1.1; }
+        #fc-front { font-size: var(--fc-font-size); font-family: var(--fc-font); font-weight: bold; color: var(--text-main); margin-bottom: 10px; line-height: 1.2; word-break: break-all; }
         #fc-furi { font-size: calc(var(--fc-font-size) / 3); color: rgba(255,255,255,0.95); margin-bottom: 5px; font-weight: 500; font-family: var(--fc-font); }
         #fc-romaji { font-size: 1.2rem; color: rgba(255,255,255,0.75); font-style: italic; margin-bottom: 15px; letter-spacing: 1px; }
         #fc-arti { font-size: 2rem; font-weight: 700; color: white; line-height: 1.3; }
@@ -198,7 +165,7 @@
 
         /* --- EXAM --- */
         .exam-options { display: flex; flex-direction: column; gap: 20px; background: var(--bg-card); padding: 30px; border-radius: 15px; border: 1px solid var(--border); }
-        .mc-question { font-size: 3rem; text-align: center; margin-bottom: 30px; font-family: var(--fc-font); font-weight: bold; }
+        .mc-question { font-size: 3rem; text-align: center; margin-bottom: 30px; font-family: var(--fc-font); font-weight: bold; word-break: break-all; }
         .mc-options { display: flex; flex-direction: column; gap: 12px; }
         .mc-btn { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 18px; border-radius: 10px; font-size: 1.1rem; cursor: pointer; text-align: left; transition: all 0.2s; }
         .mc-btn:hover { background: rgba(139, 92, 246, 0.1); border-color: var(--accent); }
@@ -212,6 +179,10 @@
         .anim-shake { animation: shakeAnswer 0.4s ease forwards; }
 
         .exam-stats-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 15px; padding: 30px; text-align: center; }
+        .exam-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
+        .exam-detail-box { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; border: 1px solid var(--border); }
+        .exam-detail-val { font-size: 1.5rem; font-weight: bold; color: var(--text-main); }
+        .exam-detail-lbl { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
 
         /* --- MULTIPLE FABs --- */
         .fab-container { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 900; transition: opacity 0.3s; }
@@ -234,7 +205,7 @@
             </button>
             <span class="app-title">KN5</span>
         </div>
-        </div>
+    </div>
 
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
@@ -281,8 +252,8 @@
         <div id="flashcard-app" class="container">
             <div class="fc-top-bar">
                 <div class="fc-counters">
-                    <span style="color: var(--btn-salah);" id="cnt-merah" title="Kartu diulang (Learning)">0</span>
-                    <span style="color: var(--btn-benar);" id="cnt-hijau" title="Kartu baru (Unseen)">0</span>
+                    <span style="color: var(--btn-salah);" id="cnt-salah" title="Salah">0</span>
+                    <span style="color: var(--btn-benar);" id="cnt-benar" title="Benar">0</span>
                 </div>
                 <button class="fc-toggle" id="btn-random" onclick="toggleRandomMode()">Acak: OFF</button>
             </div>
@@ -300,30 +271,16 @@
                     </div>
                 </div>
             </div>
-            <div class="actions" id="fc-actions">
-                <button class="btn-action btn-salah" onclick="markCard(false)">
-                    SALAH
-                    <span style="font-size:10px; font-weight:normal;">Ulang Cepat</span>
-                </button>
-                <button class="btn-action btn-benar" onclick="markCard(true)">
-                    BENAR
-                    <span style="font-size:10px; font-weight:normal;">Streak +1</span>
-                </button>
+            <div class="actions visible" id="fc-actions">
+                <button class="btn-action btn-salah" onclick="markCard(false)">SALAH</button>
+                <button class="btn-action btn-benar" onclick="markCard(true)">BENAR</button>
             </div>
-            <div id="status-msg" style="text-align:center; margin-top:20px; font-size:14px; color:var(--text-muted);"></div>
+            <div id="status-msg" style="text-align:center; margin-top:20px; font-size:14px; color:var(--text-muted);">Kartu Ke-1</div>
         </div>
 
         <div id="preview" class="container">
             <div class="chapter-bar-container">
                 <div class="chapter-bar" id="pv-chapter-bar"></div>
-                
-                <div class="category-filter-bar">
-                    <div class="cat-chip"><div class="cat-dot" style="background:#8b5cf6;"></div>Kata Sifat</div>
-                    <div class="cat-chip"><div class="cat-dot" style="background:#3b82f6;"></div>Kata Benda</div>
-                    <div class="cat-chip"><div class="cat-dot" style="background:#059669;"></div>Ekspresi</div>
-                    <div class="cat-chip"><div class="cat-dot" style="background:#f59e0b;"></div>Tempat</div>
-                    <div class="cat-chip"><div class="cat-dot" style="background:#ef4444;"></div>Tubuh</div>
-                </div>
             </div>
             <div id="preview-detail">
                 <div class="preview-header">
@@ -407,13 +364,23 @@
 
             <div id="exam-result" style="display: none;" class="exam-stats-box">
                 <h2 style="margin-bottom:10px;">Ujian Selesai!</h2>
-                <p style="color:var(--text-muted); margin-bottom:30px;">Berikut adalah statistik evaluasi lu.</p>
+                <p style="color:var(--text-muted); margin-bottom:20px;">Berikut adalah statistik evaluasi lu.</p>
                 
-                <div style="font-size:4rem; font-weight:bold; color:var(--accent); margin-bottom:10px;" id="res-score">0</div>
-                <div style="font-size:1.2rem; margin-bottom:30px;">Jawaban Benar dari <span id="res-total">0</span> Soal</div>
+                <div class="exam-detail-grid">
+                    <div class="exam-detail-box">
+                        <div class="exam-detail-val" id="res-score" style="color:var(--btn-benar);">0</div>
+                        <div class="exam-detail-lbl">Nilai / Skor</div>
+                    </div>
+                    <div class="exam-detail-box">
+                        <div class="exam-detail-val" id="res-time">00:00</div>
+                        <div class="exam-detail-lbl">Waktu Dihabiskan</div>
+                    </div>
+                </div>
+
+                <div style="font-size:1.1rem; margin-bottom:30px;">Jawaban Benar dari <span id="res-total">0</span> Soal</div>
 
                 <div style="display:flex; justify-content:center; gap:20px;">
-                    <button class="btn-icon-only" onclick="switchTab('home')" title="Beranda">
+                    <button class="btn-icon-only" onclick="goHomeFromExam()" title="Beranda">
                         <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
                     </button>
                     <button class="btn-icon-only" onclick="resetExamUI()" title="Ulangi Ujian">
@@ -442,16 +409,8 @@
 
             <div id="stats-content">
                 <div class="stat-box">
-                    <div class="stat-title">Card Counts (Berdasarkan Data Asli)</div>
-                    <p style="font-size:12px; color:var(--text-muted); margin-bottom: 10px;">Distribusi kartu yang baru, sedang dipelajari, dan yang sudah lulus (Mature).</p>
-                    <div class="chart-container" style="height: 250px;">
-                        <canvas id="chartCounts"></canvas>
-                    </div>
-                </div>
-
-                <div class="stat-box">
-                    <div class="stat-title">Card Retention / Jawaban</div>
-                    <p style="font-size:12px; color:var(--text-muted); margin-bottom: 10px;">Total jawaban benar vs salah selama sesi pembelajaran Anda.</p>
+                    <div class="stat-title">Card Retention / Jawaban Sesi Ini</div>
+                    <p style="font-size:12px; color:var(--text-muted); margin-bottom: 10px;">Total jawaban benar vs salah selama sesi pembelajaran Anda (Flashcard Endless).</p>
                     <div class="chart-container" style="height: 250px;">
                         <canvas id="chartRetrievability"></canvas>
                     </div>
@@ -526,14 +485,6 @@
                     </div>
                     <input type="file" id="set-font-file" accept=".ttf,.otf" class="form-input" style="padding: 5px;">
                 </div>
-
-                <div class="setting-item">
-                    <div>
-                        <div class="setting-label">Target Kelulusan (Streak Benar)</div>
-                        <div class="setting-sub">Berapa kali harus jawab "Benar" berturut-turut sebelum kartu dihilangkan. (Isi 0 jika ingin kartu muncul terus).</div>
-                    </div>
-                    <input type="number" id="set-target-benar" class="form-input" min="0" value="5">
-                </div>
             </div>
 
             <div class="settings-section">
@@ -553,7 +504,7 @@
         <div id="about" class="container">
             <div style="text-align: center; padding: 40px 20px; background: var(--bg-card); border-radius: 15px; border: 1px solid var(--border); margin-bottom: 20px;">
                 <h1 style="letter-spacing:2px; font-weight:600;">KN5 APP</h1>
-                <div style="background: rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 20px; font-size: 12px; color: var(--text-muted); display: inline-block; margin-top: 10px;">2.0.0 · SRS System Build</div>
+                <div style="background: rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 20px; font-size: 12px; color: var(--text-muted); display: inline-block; margin-top: 10px;">3.0.0 · Endless Loop Build</div>
             </div>
             <div style="text-align: center; margin-bottom: 30px;">
                 <p style="color:var(--text-muted); font-size:12px; text-transform:uppercase; letter-spacing:1px; margin-bottom:15px; text-align:left;">Lead Developer</p>
@@ -569,27 +520,25 @@
     </div>
 
     <script>
-        // --- KONFIGURASI PENGATURAN V2 ---
+        // --- KONFIGURASI PENGATURAN V3 ---
         let appSettings = {
             apiKey: '',
             fontSize: '4.5rem',
             fontFamily: "'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-            targetBenar: 5,
             customFontBase64: null
         };
 
         let sessionStats = { totalBenar: 0, totalSalah: 0 };
 
         function loadSettings() {
-            let saved = localStorage.getItem('kn5_settings_v2');
+            let saved = localStorage.getItem('kn5_settings_v3');
             if(saved) {
                 appSettings = JSON.parse(saved);
                 document.getElementById('set-api-key').value = appSettings.apiKey || '';
                 document.getElementById('set-font-size').value = appSettings.fontSize || '4.5rem';
                 document.getElementById('set-font-family').value = appSettings.fontFamily || "'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
-                document.getElementById('set-target-benar').value = appSettings.targetBenar !== undefined ? appSettings.targetBenar : 5;
             }
-            applyThemeSettings(); // Selalu panggil biar font langsung fix
+            applyThemeSettings(); 
         }
 
         document.getElementById('set-font-family').addEventListener('change', function() {
@@ -600,7 +549,6 @@
             appSettings.apiKey = document.getElementById('set-api-key').value;
             appSettings.fontSize = document.getElementById('set-font-size').value;
             appSettings.fontFamily = document.getElementById('set-font-family').value;
-            appSettings.targetBenar = parseInt(document.getElementById('set-target-benar').value) || 0;
 
             if (appSettings.fontFamily === 'custom') {
                 const file = document.getElementById('set-font-file').files[0];
@@ -618,14 +566,18 @@
         }
 
         function finalizeSave() {
-            localStorage.setItem('kn5_settings_v2', JSON.stringify(appSettings));
+            localStorage.setItem('kn5_settings_v3', JSON.stringify(appSettings));
             applyThemeSettings();
             alert("Pengaturan Berhasil Disimpan!");
         }
 
         function applyThemeSettings() {
-            // Fix perbaikan CSS variabel
+            // Apply font variables directly to root so CSS picks it up
             document.documentElement.style.setProperty('--fc-font-size', appSettings.fontSize);
+            
+            // Forcing application onto the element just to be safe
+            let frontEl = document.getElementById('fc-front');
+            if(frontEl) frontEl.style.fontSize = appSettings.fontSize;
             
             if (appSettings.fontFamily === 'custom' && appSettings.customFontBase64) {
                 let existingStyle = document.getElementById('custom-font-style');
@@ -638,8 +590,10 @@
                 `));
                 document.head.appendChild(newStyle);
                 document.documentElement.style.setProperty('--fc-font', "'CustomFC'");
+                if(frontEl) frontEl.style.fontFamily = "'CustomFC'";
             } else {
                 document.documentElement.style.setProperty('--fc-font', appSettings.fontFamily);
+                if(frontEl) frontEl.style.fontFamily = appSettings.fontFamily;
             }
         }
 
@@ -692,7 +646,6 @@
                 initGrids();
                 loadSettings();
             } catch (err) {
-                // Jangan ngerusak fungsi app walau gaada txt buat demo
                 document.getElementById('loader').innerHTML = `<span style="color:var(--btn-salah);">TXT tidak ada, tapi app tetap jalan. (${err.message})</span>`;
                 loadSettings();
             }
@@ -709,19 +662,16 @@
                     let kanji = "-"; let hiragana = jepang;
                     let match = jepang.match(/(.+?)\s*\((.+?)\)/);
                     if(match) { kanji = match[1].trim(); hiragana = match[2].trim(); }
-                    db[currentBab].push({ kanji: kanji, hiragana: hiragana, romaji: toRomaji(hiragana), arti: arti, streak: 0, mastered: false });
+                    db[currentBab].push({ kanji: kanji, hiragana: hiragana, romaji: toRomaji(hiragana), arti: arti });
                 }
             });
         }
 
         function updateStatistik() {
-            let total = 0; let hafal = 0;
-            Object.values(db).forEach(babArray => {
-                total += babArray.length;
-                babArray.forEach(k => { if(k.mastered) hafal++; });
-            });
+            let total = 0;
+            Object.values(db).forEach(babArray => { total += babArray.length; });
             document.getElementById('stat-total').innerText = total;
-            document.getElementById('stat-hafal').innerText = hafal;
+            document.getElementById('stat-hafal').innerText = "-"; // Sistem hafalan dihilangkan
         }
 
         function initGrids() {
@@ -777,85 +727,59 @@
                         </div>
                         <div class="vocab-id">
                             <span class="vocab-arti">${item.arti}</span>
-                            <span class="vocab-tag">Kosakata</span>
                         </div>
                     </div>`;
             });
         }
 
-        // --- ALGORITMA FLASHCARD ANKI V2 ---
-        let fcState = { unseen: [], learning: [], isRandom: false };
-        let currentCard = null;
-        let activeBab = null;
+        // --- ALGORITMA FLASHCARD (Endless Loop) ---
+        let fcCards = [];
+        let fcIndex = 0;
+        let isFcRandom = false;
 
         function toggleRandomMode() {
-            fcState.isRandom = !fcState.isRandom;
+            isFcRandom = !isFcRandom;
             let btn = document.getElementById('btn-random');
-            btn.innerText = `Acak: ${fcState.isRandom ? 'ON' : 'OFF'}`;
+            btn.innerText = `Acak: ${isFcRandom ? 'ON' : 'OFF'}`;
             btn.classList.toggle('active');
-            if (fcState.isRandom) {
-                fcState.unseen.sort(() => 0.5 - Math.random());
-                fcState.learning.sort(() => 0.5 - Math.random());
+            
+            if (isFcRandom && fcCards.length > 0) {
+                // Acak sisa array dari indeks saat ini
+                let remaining = fcCards.slice(fcIndex);
+                remaining.sort(() => 0.5 - Math.random());
+                fcCards.splice(fcIndex, remaining.length, ...remaining);
             }
-        }
-
-        function startFlashcard(bab) {
-            activeBab = bab;
-            switchTab('flashcard-app');
-            
-            fcState.unseen = db[bab] ? db[bab].filter(item => !item.mastered) : [];
-            fcState.learning = [];
-            
-            if(fcState.isRandom) fcState.unseen.sort(() => 0.5 - Math.random());
-            
-            fillLearningQueue();
             showNextCard();
         }
 
-        function fillLearningQueue() {
-            while (fcState.learning.length < 5 && fcState.unseen.length > 0) {
-                fcState.learning.push(fcState.unseen.shift());
-            }
+        function startFlashcard(bab) {
+            switchTab('flashcard-app');
+            
+            if(!db[bab] || db[bab].length === 0) return;
+            
+            // Reset state untuk bab ini
+            fcCards = [...db[bab]];
+            fcIndex = 0;
+            sessionStats.totalBenar = 0;
+            sessionStats.totalSalah = 0;
+            updateCounters();
+            
+            if(isFcRandom) fcCards.sort(() => 0.5 - Math.random());
+            
+            showNextCard();
         }
 
         function updateCounters() {
-            document.getElementById('cnt-merah').innerText = fcState.learning.length;
-            document.getElementById('cnt-hijau').innerText = fcState.unseen.length;
+            document.getElementById('cnt-salah').innerText = sessionStats.totalSalah;
+            document.getElementById('cnt-benar').innerText = sessionStats.totalBenar;
         }
 
         function showNextCard() {
             updateCounters();
             document.getElementById('card').classList.remove('flipped');
             
-            if (fcState.learning.length === 0) {
-                document.getElementById('fc-actions').classList.remove('visible');
-                document.getElementById('fc-front').innerText = "🎉 Selesai"; 
-                document.getElementById('fc-furi').innerText = ""; 
-                document.getElementById('fc-romaji').innerText = ""; 
-                document.getElementById('fc-arti').innerText = ""; 
-                
-                // Tambah dua icon doang pas selesai
-                document.getElementById('status-msg').innerHTML = `
-                    <div style="margin-bottom:20px;">Mantap! Semua kosakata di antrean ini udah lulus.</div>
-                    <div style="display:flex; justify-content:center; gap:20px;">
-                        <button class="btn-icon-only" onclick="switchTab('home')" title="Beranda">
-                            <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-                        </button>
-                        <button class="btn-icon-only" onclick="startFlashcard('${activeBab}')" title="Ulangi Bab">
-                            <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
-                        </button>
-                    </div>
-                `;
-                updateStatistik();
-                currentCard = null;
-                return;
-            }
-
-            currentCard = fcState.learning[0];
-
-            document.getElementById('fc-actions').classList.add('visible');
-            let streakMsg = appSettings.targetBenar > 0 ? `${currentCard.streak} / ${appSettings.targetBenar}` : `${currentCard.streak} / ∞`;
-            document.getElementById('status-msg').innerText = `Streak Benar: ${streakMsg}`;
+            let currentCard = fcCards[fcIndex];
+            document.getElementById('status-msg').innerText = `Kartu Ke-${fcIndex + 1} dari ${fcCards.length}`;
             
             document.getElementById('fc-front').innerText = currentCard.kanji !== "-" ? currentCard.kanji : currentCard.hiragana;
             document.getElementById('fc-furi').innerText = currentCard.kanji !== "-" ? currentCard.hiragana : ""; 
@@ -863,34 +787,17 @@
             document.getElementById('fc-arti').innerText = currentCard.arti;
         }
 
-        function flipCard() { if(currentCard) document.getElementById('card').classList.toggle('flipped'); }
+        function flipCard() { if(fcCards.length > 0) document.getElementById('card').classList.toggle('flipped'); }
 
         function markCard(isCorrect) {
-            if(!currentCard) return;
-            let card = fcState.learning.shift();
-
-            if (isCorrect) {
-                card.streak++;
-                sessionStats.totalBenar++;
-                if (appSettings.targetBenar > 0 && card.streak >= appSettings.targetBenar) {
-                    card.mastered = true; 
-                    fillLearningQueue(); 
-                } else {
-                    fcState.learning.push(card);
-                }
-            } else {
-                card.streak = 0; 
-                sessionStats.totalSalah++;
-                
-                if (fcState.learning.length > 2) {
-                    fcState.learning.splice(2, 0, card); 
-                } else {
-                    fcState.learning.push(card);
-                }
-            }
-
-            if (fcState.isRandom && fcState.learning.length > 1) {
-                fcState.learning.sort(() => 0.5 - Math.random());
+            if (isCorrect) sessionStats.totalBenar++;
+            else sessionStats.totalSalah++;
+            
+            fcIndex++;
+            // Kalau udah di ujung antrean, loop ke awal lagi (Endless)
+            if (fcIndex >= fcCards.length) {
+                fcIndex = 0;
+                if (isFcRandom) fcCards.sort(() => 0.5 - Math.random());
             }
 
             showNextCard();
@@ -903,35 +810,10 @@
             logContainer.innerHTML = '<div style="text-align:center; padding: 20px; color:var(--btn-salah);">Fitur ini sedang dalam perbaikan.</div>';
         }
 
-        // --- STATISTIK ANKI & PDF EXPORT ---
-        let chartCountsInstance, chartRetrievabilityInstance;
+        // --- STATISTIK ---
+        let chartRetrievabilityInstance;
 
         function updateCharts() {
-            let countNew = 0; let countLearning = 0; let countMature = 0;
-            
-            Object.values(db).forEach(babArray => {
-                babArray.forEach(k => {
-                    if(k.mastered) { countMature++; }
-                    else if (k.streak > 0) { countLearning++; }
-                    else { countNew++; }
-                });
-            });
-
-            if(chartCountsInstance) chartCountsInstance.destroy();
-            const ctx1 = document.getElementById('chartCounts').getContext('2d');
-            chartCountsInstance = new Chart(ctx1, {
-                type: 'doughnut',
-                data: {
-                    labels: ['New', 'Learning', 'Mature'],
-                    datasets: [{
-                        data: [countNew, countLearning, countMature],
-                        backgroundColor: ['#3b82f6', '#e11d48', '#059669'],
-                        borderWidth: 0
-                    }]
-                },
-                options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { position: 'right', labels:{color:'#94a3b8'} } } }
-            });
-
             if(chartRetrievabilityInstance) chartRetrievabilityInstance.destroy();
             const ctx2 = document.getElementById('chartRetrievability').getContext('2d');
             chartRetrievabilityInstance = new Chart(ctx2, {
@@ -967,6 +849,7 @@
         let score = 0; 
         let currentExamPool = [];
         let timerInterval;
+        let timeExamStarted = 0;
 
         function getPoolForRange(range) {
             let pool = [];
@@ -996,6 +879,18 @@
             document.getElementById('max-soal-hint').innerText = `Maksimal soal tesedia: ${maxAvailable}`;
         }
 
+        function resetExamUI() {
+            document.getElementById('exam-result').style.display = 'none';
+            document.getElementById('exam-run').style.display = 'none';
+            document.getElementById('exam-setup').style.display = 'block';
+            clearInterval(timerInterval);
+        }
+
+        function goHomeFromExam() {
+            resetExamUI();
+            switchTab('home');
+        }
+
         function startExam() {
             let range = document.getElementById('exam-range').value; 
             currentExamPool = getPoolForRange(range);
@@ -1009,6 +904,7 @@
             examQuestions = currentExamPool.sort(() => 0.5 - Math.random()).slice(0, finalCount); 
             currentQIndex = 0; 
             score = 0;
+            timeExamStarted = Date.now();
 
             document.getElementById('exam-setup').style.display = 'none';
             document.getElementById('exam-run').style.display = 'block';
@@ -1112,10 +1008,19 @@
 
         function finishExam() {
             clearInterval(timerInterval);
+            
+            // Kalkulasi waktu
+            let timeExamEnded = Date.now();
+            let timeDiff = Math.floor((timeExamEnded - timeExamStarted) / 1000); // Detik
+            let m = Math.floor(timeDiff / 60);
+            let s = timeDiff % 60;
+            let timeString = `${m}m ${s}s`;
+
             document.getElementById('exam-run').style.display = 'none';
             document.getElementById('exam-result').style.display = 'block';
             
             document.getElementById('res-score').innerText = score;
+            document.getElementById('res-time').innerText = timeString;
             document.getElementById('res-total').innerText = examQuestions.length;
         }
 
@@ -1123,11 +1028,6 @@
             if(confirm("Yakin ingin mengakhiri ujian ini?")) {
                 finishExam();
             }
-        }
-
-        function resetExamUI() {
-            document.getElementById('exam-result').style.display = 'none';
-            document.getElementById('exam-setup').style.display = 'block';
         }
 
         loadData();

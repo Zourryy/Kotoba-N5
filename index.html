@@ -4,97 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KN5</title>
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
     <style>
-        /* --- PALET TEMA PREMIUM (8 WARNA) --- */
+        /* --- PALET TEMA PREMIUM (4 GELAP, 4 TERANG) --- */
         :root {
-            --bg-main: #0f172a;        
-            --bg-card: #1e293b;        
-            --bg-sidebar: #020617;     
-            --text-main: #f8fafc;      
-            --text-muted: #94a3b8;     
-            --accent: #8b5cf6;         
-            --accent-hover: #7c3aed;   
+            /* Default Dark */
+            --bg-main: #0f172a; --bg-card: #1e293b; --bg-sidebar: #020617;     
+            --text-main: #f8fafc; --text-muted: #94a3b8;     
+            --accent: #8b5cf6; --accent-hover: #7c3aed;   
             --border: rgba(255,255,255,0.08);
-            
-            --btn-salah: #e11d48;      
-            --btn-sulit: #d97706;      
-            --btn-benar: #059669;      
-            --btn-mudah: #2563eb;      
+            --btn-salah: #e11d48; --btn-sulit: #d97706; --btn-benar: #059669; --btn-mudah: #2563eb;      
         }
 
+        /* 4 TEMA TERANG */
         :root[data-theme="light"] {
             --bg-main: #f8fafc; --bg-card: #ffffff; --bg-sidebar: #f1f5f9;
             --text-main: #0f172a; --text-muted: #64748b;
-            --accent: #3b82f6; --accent-hover: #2563eb;
-            --border: rgba(0,0,0,0.1);
+            --accent: #3b82f6; --accent-hover: #2563eb; --border: rgba(0,0,0,0.1);
         }
-
         :root[data-theme="sakura"] {
             --bg-main: #fff0f5; --bg-card: #ffffff; --bg-sidebar: #ffe4e1;
             --text-main: #2d3436; --text-muted: #636e72;
-            --accent: #e84393; --accent-hover: #d63031;
-            --border: rgba(232,67,147,0.2);
+            --accent: #e84393; --accent-hover: #d63031; --border: rgba(232,67,147,0.2);
+        }
+        :root[data-theme="matcha"] {
+            --bg-main: #f1f8f5; --bg-card: #ffffff; --bg-sidebar: #e8f5e9;
+            --text-main: #1b5e20; --text-muted: #4caf50;
+            --accent: #43a047; --accent-hover: #2e7d32; --border: rgba(76, 175, 80, 0.2);
+        }
+        :root[data-theme="sunrise"] {
+            --bg-main: #fff8e1; --bg-card: #ffffff; --bg-sidebar: #ffecb3;
+            --text-main: #3e2723; --text-muted: #795548;
+            --accent: #f57c00; --accent-hover: #e65100; --border: rgba(245, 124, 0, 0.2);
         }
 
+        /* 4 TEMA GELAP */
+        :root[data-theme="dark"] {
+            /* Sama dengan default */
+        }
         :root[data-theme="ocean"] {
             --bg-main: #0b1a2a; --bg-card: #112b45; --bg-sidebar: #05101a;
             --text-main: #e0f2fe; --text-muted: #94a3b8;
-            --accent: #0ea5e9; --accent-hover: #0284c7;
-            --border: rgba(14,165,233,0.2);
+            --accent: #0ea5e9; --accent-hover: #0284c7; --border: rgba(14,165,233,0.2);
         }
-
-        /* TEMA BARU */
-        :root[data-theme="forest"] {
-            --bg-main: #f1f8f5; --bg-card: #ffffff; --bg-sidebar: #e8f5e9;
-            --text-main: #1b5e20; --text-muted: #4caf50;
-            --accent: #2e7d32; --accent-hover: #1b5e20;
-            --border: rgba(46, 125, 50, 0.2);
-        }
-
-        :root[data-theme="sunset"] {
-            --bg-main: #fff3e0; --bg-card: #ffffff; --bg-sidebar: #ffe0b2;
-            --text-main: #3e2723; --text-muted: #795548;
-            --accent: #e65100; --accent-hover: #bf360c;
-            --border: rgba(230, 81, 0, 0.2);
-        }
-
         :root[data-theme="lavender"] {
-            --bg-main: #f3e5f5; --bg-card: #ffffff; --bg-sidebar: #e1bee7;
-            --text-main: #4a148c; --text-muted: #7b1fa2;
-            --accent: #8e24aa; --accent-hover: #6a1b9a;
-            --border: rgba(142, 36, 170, 0.2);
+            --bg-main: #2e1065; --bg-card: #4c1d95; --bg-sidebar: #1e1b4b;
+            --text-main: #f3e8ff; --text-muted: #c4b5fd;
+            --accent: #a855f7; --accent-hover: #9333ea; --border: rgba(168, 85, 247, 0.3);
         }
-
         :root[data-theme="coffee"] {
-            --bg-main: #efebe9; --bg-card: #ffffff; --bg-sidebar: #d7ccc8;
-            --text-main: #3e2723; --text-muted: #5d4037;
-            --accent: #5d4037; --accent-hover: #3e2723;
-            --border: rgba(93, 64, 55, 0.2);
+            --bg-main: #3e2723; --bg-card: #4e342e; --bg-sidebar: #261410;
+            --text-main: #efebe9; --text-muted: #bcaaa4;
+            --accent: #8d6e63; --accent-hover: #795548; --border: rgba(141, 110, 99, 0.2);
         }
 
         * { box-sizing: border-box; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
         body { background-color: var(--bg-main); color: var(--text-main); display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; transition: background-color 0.3s, color 0.3s; }
 
-        /* --- ICONS (SVG) --- */
         .svg-icon { width: 20px; height: 20px; fill: currentColor; display: inline-block; vertical-align: middle; margin-right: 12px; }
         
-        /* --- HEADER & HAMBURGER --- */
+        /* --- HEADER --- */
         .top-bar { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: var(--bg-sidebar); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
         .header-left { display: flex; align-items: center; gap: 15px; }
         .hamburger-btn { background: none; border: none; color: var(--text-main); cursor: pointer; display: flex; align-items: center; padding: 5px; border-radius: 5px; transition: background 0.2s; }
         .hamburger-btn:hover { background: var(--border); }
         .app-title { font-size: 1.2rem; font-weight: 600; letter-spacing: 1px; color: var(--accent); }
-        
-        /* Header Right: Theme Toggle & Profile */
         .header-right { display: flex; align-items: center; gap: 15px; }
         
-        /* Theme Palette Toggle (Posisi ke samping & Animasi Bola) */
+        /* Theme Palette Toggle (Memanjang ke samping) */
         .theme-wrapper { position: relative; display: flex; align-items: center; }
         .theme-toggle-btn { background: none; border: none; color: var(--text-main); cursor: pointer; padding: 5px; border-radius: 50%; transition: background 0.2s; }
         .theme-toggle-btn:hover { background: var(--border); }
         
-        .theme-palette { position: absolute; top: 50%; right: 45px; transform: translateY(-50%); background: var(--bg-card); border: 1px solid var(--border); padding: 15px; border-radius: 20px; display: none; grid-template-columns: repeat(4, 1fr); gap: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); z-index: 200; transform-origin: right center; }
-        .theme-palette.show { display: grid; animation: ballPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+        .theme-palette { position: absolute; top: 50%; right: 45px; transform: translateY(-50%); background: var(--bg-card); border: 1px solid var(--border); padding: 15px; border-radius: 20px; display: none; flex-direction: row; gap: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); z-index: 200; transform-origin: right center; width: max-content; }
+        .theme-palette.show { display: flex; animation: ballPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
         
         @keyframes ballPop {
             0% { opacity: 0; transform: translateY(-50%) scale(0.3) translateX(30px); }
@@ -105,24 +92,23 @@
         .color-circle:hover { transform: scale(1.15); box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
         .color-circle:active { transform: scale(0.8); }
         
-        .cc-dark { background: #0f172a; border: 1px solid #334155;} 
+        /* Warna Bulatan */
         .cc-light { background: #f8fafc; border: 1px solid #cbd5e1; } 
         .cc-sakura { background: #ffb7b2; border: 1px solid #fb7185;} 
+        .cc-matcha { background: #81c784; border: 1px solid #4caf50;} 
+        .cc-sunrise { background: #ffb74d; border: 1px solid #ff9800;}
+        .cc-dark { background: #0f172a; border: 1px solid #334155;} 
         .cc-ocean { background: #0284c7; border: 1px solid #38bdf8;}
-        .cc-forest { background: #2e7d32; border: 1px solid #1b5e20;} 
-        .cc-sunset { background: #e65100; border: 1px solid #bf360c;} 
-        .cc-lavender { background: #8e24aa; border: 1px solid #6a1b9a;} 
-        .cc-coffee { background: #5d4037; border: 1px solid #3e2723;}
+        .cc-lavender { background: #7e22ce; border: 1px solid #9333ea;} 
+        .cc-coffee { background: #4e342e; border: 1px solid #3e2723;}
 
-        /* Profile User Top Right */
+        /* Profile User */
         .user-profile { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 4px 8px; border-radius: 20px; transition: background 0.2s; }
         .user-profile:hover { background: var(--border); }
         .profile-name { font-size: 14px; font-weight: 600; color: var(--text-main); }
         .profile-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); display: flex; justify-content: center; align-items: center; border: 2px solid var(--border); }
 
-        @media (max-width: 500px) {
-            .profile-name { display: none; }
-        }
+        @media (max-width: 500px) { .profile-name { display: none; } }
 
         /* --- SIDEBAR --- */
         .sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100vh; background-color: var(--bg-sidebar); z-index: 999; padding-top: 20px; box-shadow: 4px 0 15px rgba(0,0,0,0.5); transition: left 0.3s ease; display: flex; flex-direction: column; border-right: 1px solid var(--border); }
@@ -142,12 +128,11 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         h2 { font-weight: 500; margin-bottom: 25px; color: var(--text-main); }
 
-        /* GRID BAB */
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 15px; }
         .btn-bab { padding: 15px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-main); cursor: pointer; font-size: 14px; text-align: center; transition: all 0.2s; }
         .btn-bab:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
 
-        /* --- PREVIEW KOTOBA (KOTAK BAB INSTAN) --- */
+        /* PREVIEW KOTOBA */
         .chapter-bar-container { background: var(--bg-card); padding: 20px; border-radius: 15px; border: 1px solid var(--border); margin-bottom: 25px; }
         .chapter-bar { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
         .btn-chip { width: 42px; height: 42px; border-radius: 10px; background: var(--bg-main); border: 1px solid var(--border); color: var(--text-main); font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; font-size: 15px; }
@@ -172,29 +157,15 @@
         .stat-value { font-size: 3rem; font-weight: 600; color: var(--accent); margin-bottom: 5px; }
         .stat-label { font-size: 14px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- ABOUT --- */
-        .about-header { text-align: center; padding: 40px 20px; background: var(--bg-card); border-radius: 15px; border: 1px solid var(--border); margin-bottom: 20px; }
-        .about-logo { width: 80px; height: 80px; background: var(--accent); border-radius: 20px; display: flex; justify-content: center; align-items: center; margin: 0 auto 15px; transform: rotate(45deg); }
-        .about-logo svg { transform: rotate(-45deg); width: 40px; height: 40px; fill: white; }
-        .about-version { background: rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 20px; font-size: 12px; color: var(--text-muted); display: inline-block; margin-top: 10px; }
-        .about-dev { text-align: center; margin-bottom: 30px; }
-        .dev-avatar { width: 100px; height: 100px; border-radius: 50%; background: #334155; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; border: 3px solid var(--accent); }
-        .btn-group { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-        .btn-outline { background: var(--bg-card); border: 1px solid var(--border); padding: 15px; border-radius: 12px; color: var(--text-main); text-align: center; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 13px; }
-        .btn-outline:hover { background: rgba(255,255,255,0.05); }
-        .donate-card { background: rgba(225, 29, 72, 0.1); border: 1px solid rgba(225, 29, 72, 0.3); padding: 20px; border-radius: 15px; display: flex; align-items: center; gap: 15px; cursor: pointer; margin-bottom: 30px; }
-        .list-group { background: var(--bg-card); border-radius: 15px; border: 1px solid var(--border); overflow: hidden; }
-        .list-item { display: flex; align-items: center; padding: 20px; border-bottom: 1px solid var(--border); cursor: pointer; gap: 15px; }
-        .list-item:hover { background: rgba(255,255,255,0.03); }
-        .list-item:last-child { border-bottom: none; }
+        /* --- SETTINGS --- */
+        .settings-card { background: var(--bg-card); padding: 30px; border-radius: 15px; border: 1px solid var(--border); margin-bottom: 20px; }
+        .form-group { margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
+        .form-group label { font-size: 14px; font-weight: 600; color: var(--text-muted); }
+        .form-input { width: 100%; padding: 12px 15px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-main); color: var(--text-main); outline: none; font-size: 14px; }
+        .form-input:focus { border-color: var(--accent); }
+        .flex-row { display: flex; gap: 10px; }
 
-        /* --- CAMERA FAB --- */
-        .fab-camera { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background-color: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); cursor: pointer; z-index: 900; transition: all 0.3s ease; }
-        .fab-camera:hover { transform: scale(1.05); border-color: var(--accent); box-shadow: 0 4px 15px var(--border); }
-        .fab-camera svg { width: 28px; height: 28px; fill: var(--text-muted); transition: fill 0.3s ease; }
-        .fab-camera:hover svg { fill: var(--accent); }
-
-        /* --- FLASHCARD UI (FONT DIPERBESAR) --- */
+        /* --- FLASHCARD UI --- */
         .flashcard-container { width: 100%; max-width: 450px; height: 320px; margin: 0 auto; perspective: 1000px; cursor: pointer; }
         .flashcard { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: transform 0.6s; }
         .flashcard.flipped { transform: rotateY(180deg); }
@@ -202,7 +173,6 @@
         .card-front { background: var(--bg-card); border: 1px solid var(--border); }
         .card-back { background: linear-gradient(135deg, var(--bg-card), var(--accent)); transform: rotateY(180deg); border: 1px solid var(--border); }
         
-        /* Ubah ukuran font flashcard di sini */
         #fc-front { font-size: 4.5rem; font-family: 'MS Mincho', serif; font-weight: bold; color: var(--text-main); margin-bottom: 10px; line-height: 1.1; }
         #fc-furi { font-size: 1.6rem; color: rgba(255,255,255,0.95); margin-bottom: 5px; font-weight: 500; }
         #fc-romaji { font-size: 1.2rem; color: rgba(255,255,255,0.75); font-style: italic; margin-bottom: 15px; letter-spacing: 1px; }
@@ -214,11 +184,11 @@
         .btn-action:active { transform: scale(0.95); }
         .btn-salah { background: var(--btn-salah); } .btn-sulit { background: var(--btn-sulit); } .btn-benar { background: var(--btn-benar); } .btn-mudah { background: var(--btn-mudah); }
 
-        /* --- EXAM & ANIMATIONS --- */
+        /* --- EXAM --- */
         .exam-options { display: flex; flex-direction: column; gap: 20px; background: var(--bg-card); padding: 30px; border-radius: 15px; border: 1px solid var(--border); }
         select, .btn-primary { padding: 12px 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: var(--bg-main); color: var(--text-main); font-size: 15px; outline: none; }
         select:focus { border-color: var(--accent); }
-        .btn-primary { background: var(--accent); border: none; font-weight: 600; cursor: pointer; letter-spacing: 1px; margin-top: 10px; color:white; }
+        .btn-primary { background: var(--accent); border: none; font-weight: 600; cursor: pointer; letter-spacing: 1px; margin-top: 10px; color:white; width: 100%; transition: background 0.2s; }
         .btn-primary:hover { background: var(--accent-hover); }
 
         .mc-question { font-size: 2.5rem; text-align: center; margin-bottom: 40px; font-family: 'MS Mincho', serif; font-weight: bold; }
@@ -233,11 +203,18 @@
         .anim-pop { animation: popAnswer 0.4s ease forwards; }
         .anim-shake { animation: shakeAnswer 0.4s ease forwards; }
 
-        /* --- LOGIN & MAINTENANCE --- */
+        /* --- LOGIN --- */
         .auth-card { background: var(--bg-card); padding: 40px; border-radius: 15px; border: 1px solid var(--border); max-width: 400px; margin: 0 auto; text-align: center; }
         .auth-input { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-main); color: var(--text-main); outline: none; }
-        .maintenance-box { text-align: center; padding: 60px 20px; background: var(--bg-card); border-radius: 15px; border: 1px dashed var(--border); color: var(--text-muted); }
-        .maintenance-box svg { width: 60px; height: 60px; fill: var(--text-muted); margin-bottom: 20px; opacity: 0.5; }
+
+        /* --- MULTIPLE FABs (Hanya Muncul di Home) --- */
+        .fab-container { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 900; transition: opacity 0.3s; }
+        .fab-btn { width: 55px; height: 55px; border-radius: 50%; background-color: var(--bg-card); border: 1px solid var(--border); display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); cursor: pointer; transition: all 0.3s ease; }
+        .fab-btn:hover { transform: scale(1.05); border-color: var(--accent); box-shadow: 0 4px 15px var(--accent); }
+        .fab-btn svg { width: 26px; height: 26px; fill: var(--text-muted); transition: fill 0.3s ease; }
+        .fab-btn:hover svg { fill: var(--accent); }
+        
+        #btn-next-q { margin-top: 25px; padding: 15px; font-size: 1.1rem; }
     </style>
 </head>
 <body>
@@ -258,18 +235,18 @@
                     <svg class="svg-icon" style="margin:0;" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
                 </button>
                 <div class="theme-palette" id="theme-palette">
-                    <div class="color-circle cc-dark" onclick="setTheme('dark')"></div>
-                    <div class="color-circle cc-light" onclick="setTheme('light')"></div>
-                    <div class="color-circle cc-sakura" onclick="setTheme('sakura')"></div>
-                    <div class="color-circle cc-ocean" onclick="setTheme('ocean')"></div>
-                    <div class="color-circle cc-forest" onclick="setTheme('forest')"></div>
-                    <div class="color-circle cc-sunset" onclick="setTheme('sunset')"></div>
-                    <div class="color-circle cc-lavender" onclick="setTheme('lavender')"></div>
-                    <div class="color-circle cc-coffee" onclick="setTheme('coffee')"></div>
+                    <div class="color-circle cc-light" onclick="setTheme('light')" title="Light"></div>
+                    <div class="color-circle cc-sakura" onclick="setTheme('sakura')" title="Sakura"></div>
+                    <div class="color-circle cc-matcha" onclick="setTheme('matcha')" title="Matcha"></div>
+                    <div class="color-circle cc-sunrise" onclick="setTheme('sunrise')" title="Sunrise"></div>
+                    <div class="color-circle cc-dark" onclick="setTheme('dark')" title="Dark"></div>
+                    <div class="color-circle cc-ocean" onclick="setTheme('ocean')" title="Ocean"></div>
+                    <div class="color-circle cc-lavender" onclick="setTheme('lavender')" title="Lavender"></div>
+                    <div class="color-circle cc-coffee" onclick="setTheme('coffee')" title="Coffee"></div>
                 </div>
             </div>
             <div class="user-profile" onclick="switchTab('login')">
-                <span class="profile-name">Guest</span>
+                <span class="profile-name" id="user-display-name">Guest</span>
                 <div class="profile-avatar">
                     <svg viewBox="0 0 24 24" style="width:20px; fill:white;"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                 </div>
@@ -307,7 +284,7 @@
             <svg class="svg-icon" viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg> About
         </button>
         <button class="nav-btn" onclick="switchTab('login')">
-            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg> Login
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg> Login / Akun
         </button>
     </div>
 
@@ -334,9 +311,9 @@
                 </div>
             </div>
             <div class="actions" id="fc-actions">
-                <button class="btn-action btn-salah" onclick="markCard('salah')">Salah <span style="display:block; font-size:10px; font-weight:normal; opacity:0.8;">&lt; 1 mnt</span></button>
-                <button class="btn-action btn-sulit" onclick="markCard('sulit')">Sulit <span style="display:block; font-size:10px; font-weight:normal; opacity:0.8;">5 mnt</span></button>
-                <button class="btn-action btn-benar" onclick="markCard('benar')">Benar <span style="display:block; font-size:10px; font-weight:normal; opacity:0.8;">10 mnt</span></button>
+                <button class="btn-action btn-salah" onclick="markCard('salah')">Salah <span id="lbl-salah" style="display:block; font-size:10px; font-weight:normal; opacity:0.8;">1 mnt</span></button>
+                <button class="btn-action btn-sulit" onclick="markCard('sulit')">Sulit <span id="lbl-sulit" style="display:block; font-size:10px; font-weight:normal; opacity:0.8;">5 mnt</span></button>
+                <button class="btn-action btn-benar" onclick="markCard('benar')">Benar <span id="lbl-benar" style="display:block; font-size:10px; font-weight:normal; opacity:0.8;">10 mnt</span></button>
                 <button class="btn-action btn-mudah" onclick="markCard('mudah')">Mudah <span style="display:block; font-size:10px; font-weight:normal; opacity:0.8;">Lulus</span></button>
             </div>
             <div id="status-msg" style="text-align:center; margin-top:20px; font-size:14px; color:var(--text-muted);"></div>
@@ -379,6 +356,8 @@
                 <div class="mc-question" id="mc-q"></div>
                 <div class="mc-options" id="mc-opts"></div>
                 
+                <button id="btn-next-q" class="btn-primary" style="display:none;" onclick="nextExamQuestion()">Berikutnya</button>
+
                 <div style="text-align: center; margin-top: 35px;">
                     <button onclick="finishExam()" style="background:none; border:none; color:var(--text-muted); text-decoration:underline; cursor:pointer;">Akhiri Ujian Lebih Awal</button>
                 </div>
@@ -397,99 +376,95 @@
                     <div class="stat-label">Kotoba Dikuasai</div>
                 </div>
                 <div class="stat-card" style="grid-column: span 2; padding:20px;">
-                    <p style="color:var(--text-muted); font-size:14px;">*Data penguasaan (Kotoba Dikuasai) akan aktif setelah Anda login dan menyimpan progress di Cloud Database.</p>
+                    <p style="color:var(--text-muted); font-size:14px;">*Data penguasaan akan tersinkronisasi setelah Anda login ke Database Firebase.</p>
                 </div>
             </div>
         </div>
 
         <div id="settings" class="container">
-            <div class="maintenance-box">
-                <svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg>
-                <h3>Pengaturan Lanjutan</h3>
-                <p style="margin-top:10px; font-size:14px;">Fitur konfigurasi interval memori dan notifikasi sedang dalam tahap pengembangan (Under Maintenance).</p>
+            <div class="settings-card">
+                <h3 style="margin-bottom: 20px; color: var(--accent);">Pengaturan Aplikasi</h3>
+                
+                <div class="form-group">
+                    <label>Google AI Studio API Key (Kamera OCR)</label>
+                    <input type="password" id="input-api-key" class="form-input" placeholder="Masukkan API Key...">
+                    <small style="color:var(--text-muted); font-size:11px;">Key tersimpan lokal di browser. Dibutuhkan untuk deteksi Kanji.</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Interval Algoritma Flashcard (Menit)</label>
+                    <div class="flex-row">
+                        <input type="number" id="input-int-salah" class="form-input" placeholder="Salah (Default: 1)" min="1">
+                        <input type="number" id="input-int-sulit" class="form-input" placeholder="Sulit (Default: 5)" min="2">
+                        <input type="number" id="input-int-benar" class="form-input" placeholder="Benar (Default: 10)" min="5">
+                    </div>
+                </div>
+
+                <button class="btn-primary" onclick="saveSettings()" style="margin-top: 10px;">Simpan Pengaturan</button>
             </div>
         </div>
 
         <div id="about" class="container">
-            <div class="about-header">
-                <div class="about-logo">
-                    <svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.83L17.17 18H6.83L12 5.83z"/></svg>
-                </div>
+            <div style="text-align: center; padding: 40px 20px; background: var(--bg-card); border-radius: 15px; border: 1px solid var(--border); margin-bottom: 20px;">
                 <h1 style="letter-spacing:2px; font-weight:600;">KN5 APP</h1>
-                <div class="about-version">1.0.1 · UNIVERSAL</div>
+                <div style="background: rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 20px; font-size: 12px; color: var(--text-muted); display: inline-block; margin-top: 10px;">1.0.2 · Serverless Build</div>
             </div>
-
-            <div class="about-dev">
+            <div style="text-align: center; margin-bottom: 30px;">
                 <p style="color:var(--text-muted); font-size:12px; text-transform:uppercase; letter-spacing:1px; margin-bottom:15px; text-align:left;">Lead Developer</p>
-                <div class="dev-avatar">
-                    <svg style="width:50px; fill:var(--text-muted);" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                </div>
                 <h2 style="margin-bottom:20px;">トリヤディ (Triyadi)</h2>
-                
-                <div class="btn-group">
-                    <div class="btn-outline">
-                        <svg class="svg-icon" style="margin:0;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>Website
-                    </div>
-                    <div class="btn-outline">
-                        <svg class="svg-icon" style="margin:0;" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg>GitHub
-                    </div>
-                    <div class="btn-outline">
-                        <svg class="svg-icon" style="margin:0;" viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>Instagram
-                    </div>
-                </div>
-
-                <div class="donate-card" onclick="alert('Arigatou! Fitur Donasi belum aktif.')">
-                    <div style="background:rgba(225,29,72,0.2); padding:10px; border-radius:50%;">
-                        <svg style="width:24px; fill:var(--btn-salah);" viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
-                    </div>
-                    <div style="text-align:left;">
-                        <h4 style="margin-bottom:3px; color:var(--text-main);">Like what I do?</h4>
-                        <p style="font-size:13px; color:var(--text-muted);">Buy me a coffee</p>
-                    </div>
-                </div>
-
-                <p style="color:var(--text-muted); font-size:12px; text-transform:uppercase; letter-spacing:1px; margin-bottom:15px; text-align:left;">Community & Info</p>
-                <div class="list-group">
-                    <div class="list-item">
-                        <svg class="svg-icon" style="margin:0;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-                        <span style="font-weight:500;">Discord Server</span>
-                    </div>
-                    <div class="list-item">
-                        <svg class="svg-icon" style="margin:0;" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-                        <span style="font-weight:500;">Telegram Channel</span>
-                    </div>
-                    <div class="list-item" style="align-items:flex-start;">
-                        <svg class="svg-icon" style="margin:0; margin-top:2px;" viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
-                        <div style="text-align:left;">
-                            <span style="font-weight:500; display:block; margin-bottom:3px;">GNU General Public License v3.0</span>
-                            <span style="font-size:12px; color:var(--text-muted);">Free, open-source software. You may use, study, share and improve it.</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
         <div id="login" class="container">
             <div class="auth-card">
                 <svg viewBox="0 0 24 24" style="width:50px; fill:var(--accent); margin-bottom:20px;"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                <h2 style="margin-bottom:10px;">Login ke Akun</h2>
-                <p style="font-size:13px; color:var(--text-muted); margin-bottom:25px;">Simpan progress hafalan lu dengan aman di cloud.</p>
-                <input type="email" class="auth-input" placeholder="Email Address">
-                <input type="password" class="auth-input" placeholder="Password">
-                <button class="btn-primary" onclick="alert('Sistem Login belum terkoneksi Firebase/Database.')">Login / Register</button>
+                <h2 style="margin-bottom:10px;">Login ke Cloud</h2>
+                <p style="font-size:13px; color:var(--text-muted); margin-bottom:25px;">Simpan progress flashcard dan data hafalan lu aman di Firestore.</p>
+                <input type="email" id="login-email" class="auth-input" placeholder="Email Address">
+                <input type="password" id="login-password" class="auth-input" placeholder="Password">
+                <button class="btn-primary" onclick="loginFirebase()">Login / Register</button>
+                <button class="btn-primary" onclick="loginGoogle()" style="background:#ea4335; margin-top:10px;">Login with Google</button>
             </div>
         </div>
     </div>
 
-    <div class="fab-camera" onclick="alert('Fitur OCR Kamera sedang disiapkan. Membutuhkan integrasi API deteksi teks.')">
-        <svg viewBox="0 0 24 24">
-            <path d="M19 8h-1.81l-1.83-2H8.64L6.81 8H5c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM12 18c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
-            <circle cx="12" cy="13" r="3.2"/>
-            <path d="M20 5V2h-2v3h-3v2h3v3h2V7h3V5z"/>
-        </svg>
+    <div class="fab-container" id="fab-container">
+        <button class="fab-btn" onclick="alert('Fitur Note (Catatan Kotoba) segera hadir!')" title="Catatan">
+            <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+        </button>
+        <button class="fab-btn" onclick="alert('Integrasi Google AI Studio OCR. Pastikan API Key di Pengaturan sudah diset!')" title="Kamera OCR">
+            <svg viewBox="0 0 24 24"><path d="M19 8h-1.81l-1.83-2H8.64L6.81 8H5c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM12 18c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/><circle cx="12" cy="13" r="3.2"/></svg>
+        </button>
     </div>
 
     <script>
+        // --- KONFIGURASI PENGATURAN (API & INTERVAL) ---
+        let appSettings = { apiKey: '', intSalah: 1, intSulit: 5, intBenar: 10 };
+        function loadSettings() {
+            let saved = localStorage.getItem('kn5_settings');
+            if(saved) {
+                appSettings = JSON.parse(saved);
+                document.getElementById('input-api-key').value = appSettings.apiKey || '';
+                document.getElementById('input-int-salah').value = appSettings.intSalah;
+                document.getElementById('input-int-sulit').value = appSettings.intSulit;
+                document.getElementById('input-int-benar').value = appSettings.intBenar;
+                
+                // Update Label di Flashcard
+                document.getElementById('lbl-salah').innerText = appSettings.intSalah + " mnt";
+                document.getElementById('lbl-sulit').innerText = appSettings.intSulit + " mnt";
+                document.getElementById('lbl-benar').innerText = appSettings.intBenar + " mnt";
+            }
+        }
+        function saveSettings() {
+            appSettings.apiKey = document.getElementById('input-api-key').value;
+            appSettings.intSalah = parseInt(document.getElementById('input-int-salah').value) || 1;
+            appSettings.intSulit = parseInt(document.getElementById('input-int-sulit').value) || 5;
+            appSettings.intBenar = parseInt(document.getElementById('input-int-benar').value) || 10;
+            localStorage.setItem('kn5_settings', JSON.stringify(appSettings));
+            alert("Pengaturan Berhasil Disimpan!");
+            loadSettings();
+        }
+
         // --- AUTO ROMAJI CONVERTER ---
         const romajiMap = { 'あ':'a','い':'i','う':'u','え':'e','お':'o','か':'ka','き':'ki','く':'ku','け':'ke','こ':'ko','さ':'sa','し':'shi','す':'su','せ':'se','そ':'so','た':'ta','ち':'chi','つ':'tsu','て':'te','と':'to','な':'na','に':'ni','ぬ':'nu','ね':'ne','の':'no','は':'ha','ひ':'hi','ふ':'fu','へ':'he','ほ':'ho','ま':'ma','み':'mi','む':'mu','め':'me','も':'mo','や':'ya','ゆ':'yu','よ':'yo','ら':'ra','り':'ri','る':'ru','れ':'re','ろ':'ro','わ':'wa','を':'wo','ん':'n', 'が':'ga','ぎ':'gi','ぐ':'gu','げ':'ge','ご':'go','ざ':'za','じ':'ji','ず':'zu','ぜ':'ze','ぞ':'zo','だ':'da','ぢ':'ji','づ':'zu','で':'de','ど':'do','ば':'ba','び':'bi','ぶ':'bu','べ':'be','ぼ':'bo','ぱ':'pa','ぴ':'pi','ぷ':'pu','ぺ':'pe','ぽ':'po', 'きゃ':'kya','きゅ':'kyu','きょ':'kyo','しゃ':'sha','しゅ':'shu','しょ':'sho','ちゃ':'cha','ちゅ':'chu','ちょ':'cho','にゃ':'nya','にゅ':'nyu','にょ':'nyo','ひゃ':'hya','ひゅ':'hyu','ひょ':'hyo','みゃ':'mya','みゅ':'myu','みょ':'myo','りゃ':'rya','りゅ':'ryu','りょ':'ryo', 'ぎゃ':'gya','ぎゅ':'gyu','ぎょ':'gyo','じゃ':'ja','じゅ':'ju','じょ':'jo','びゃ':'bya','びゅ':'byu','びょ':'byo','ぴゃ':'pya','ぴゅ':'pyu','ぴょ':'pyo', 'ア':'a','イ':'i','ウ':'u','エ':'e','オ':'o','カ':'ka','キ':'ki','ク':'ku','ケ':'ke','コ':'ko','サ':'sa','シ':'shi','ス':'su','セ':'se','ソ':'so','タ':'ta','チ':'chi','ツ':'tsu','テ':'te','ト':'to','ナ':'na','ニ':'ni','ヌ':'nu','ネ':'ne','ノ':'no','ハ':'ha','ヒ':'hi','フ':'fu','ヘ':'he','ホ':'ho','マ':'ma','ミ':'mi','ム':'mu','メ':'me','モ':'mo','ヤ':'ya','ユ':'yu','ヨ':'yo','ラ':'ra','リ':'ri','ル':'ru','レ':'re','ロ':'ro','ワ':'wa','ヲ':'wo','ン':'n' };
         function toRomaji(kanaStr) { let result = ''; for(let i=0; i<kanaStr.length; i++) { let double = kanaStr.substring(i, i+2); if(romajiMap[double]) { result += romajiMap[double]; i++; } else if(romajiMap[kanaStr[i]]) { result += romajiMap[kanaStr[i]]; } else if(kanaStr[i] === 'っ' || kanaStr[i] === 'ッ') { if(i+1 < kanaStr.length && romajiMap[kanaStr[i+1]]) { result += romajiMap[kanaStr[i+1]][0]; } } else if(kanaStr[i] === 'ー') { result += '-'; } else { result += kanaStr[i]; } } return result; }
@@ -500,9 +475,9 @@
         function toggleMenu() {
             document.getElementById('sidebar').classList.toggle('open');
             document.getElementById('overlay').classList.toggle('show');
-            document.getElementById('theme-palette').classList.remove('show');
         }
 
+        // Toggle Palette (Gak nutup sendiri pas warna diklik)
         function togglePalette() {
             document.getElementById('theme-palette').classList.toggle('show');
             if(document.getElementById('sidebar').classList.contains('open')) toggleMenu();
@@ -511,36 +486,34 @@
         function setTheme(themeName) {
             document.documentElement.setAttribute('data-theme', themeName);
             localStorage.setItem('theme', themeName);
-            document.getElementById('theme-palette').classList.remove('show');
+            // Hapus auto-close:
+            // document.getElementById('theme-palette').classList.remove('show');
         }
         if(localStorage.getItem('theme')) setTheme(localStorage.getItem('theme'));
 
-        // Tutup palet kalau klik di luar
-        document.addEventListener('click', function(event) {
-            const isClickInside = document.querySelector('.theme-wrapper').contains(event.target);
-            if (!isClickInside) {
-                document.getElementById('theme-palette').classList.remove('show');
-            }
-        });
-
+        // Logic Tab Navigation & FAB Visibility
         function switchTab(tabId) {
             document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             if(event) event.currentTarget.classList.add('active');
             if(document.getElementById('sidebar').classList.contains('open')) toggleMenu();
+
+            // FAB Cuma muncul di Home
+            document.getElementById('fab-container').style.display = (tabId === 'home') ? 'flex' : 'none';
         }
 
         // --- FETCH DATA ---
         async function loadData() {
             try {
                 const response = await fetch('kosakata_bab1_25_lengkap.txt');
-                if(!response.ok) throw new Error("File TXT tidak ditemukan.");
+                if(!response.ok) throw new Error("TXT tidak ditemukan.");
                 const text = await response.text();
                 parseData(text);
                 updateStatistik();
                 document.getElementById('loader').style.display = 'none';
                 initGrids();
+                loadSettings();
             } catch (err) {
                 document.getElementById('loader').innerHTML = `<span style="color:var(--btn-salah);">Gagal mengambil file teks! (${err.message})</span>`;
             }
@@ -568,7 +541,6 @@
             document.getElementById('stat-total').innerText = total;
         }
 
-        // --- INITIALIZE GRIDS ---
         function initGrids() {
             const fcGrid = document.getElementById('bab-grid');
             const pvChapterBar = document.getElementById('pv-chapter-bar');
@@ -577,36 +549,18 @@
             fcGrid.innerHTML = ''; pvChapterBar.innerHTML = ''; exSelect.innerHTML = '<option value="all">Keseluruhan (Bab 1 - 25)</option>';
 
             Object.keys(db).forEach(bab => {
-                // Flashcard Main Grid
-                let btnFc = document.createElement('button'); 
-                btnFc.className = 'btn-bab'; 
-                btnFc.innerText = `Bab ${bab}`; 
-                btnFc.onclick = () => startFlashcard(bab); 
-                fcGrid.appendChild(btnFc);
+                let btnFc = document.createElement('button'); btnFc.className = 'btn-bab'; btnFc.innerText = `Bab ${bab}`; btnFc.onclick = () => startFlashcard(bab); fcGrid.appendChild(btnFc);
                 
-                // Preview Chips (Kotak Bab)
-                let btnChip = document.createElement('button'); 
-                btnChip.className = 'btn-chip'; 
-                btnChip.id = 'chip-bab-' + bab;
-                btnChip.innerText = bab; 
-                btnChip.onclick = () => showPreview(bab); 
-                pvChapterBar.appendChild(btnChip);
+                let btnChip = document.createElement('button'); btnChip.className = 'btn-chip'; btnChip.id = 'chip-bab-' + bab; btnChip.innerText = bab; btnChip.onclick = () => showPreview(bab); pvChapterBar.appendChild(btnChip);
 
-                // Exam Range
-                let opt = document.createElement('option'); 
-                opt.value = bab; 
-                opt.innerText = `Hanya Bab ${bab}`; 
-                exSelect.appendChild(opt);
+                let opt = document.createElement('option'); opt.value = bab; opt.innerText = `Hanya Bab ${bab}`; exSelect.appendChild(opt);
             });
             exSelect.innerHTML += `<option value="1-4">Evaluasi Bab 1-4</option><option value="5-8">Evaluasi Bab 5-8</option><option value="21-25">Evaluasi Bab 21-25</option>`;
-            
-            // Set Preview ke Bab 1 by default
             if(Object.keys(db).length > 0) showPreview(Object.keys(db)[0]);
         }
 
         // --- PREVIEW ---
         function showPreview(bab) {
-            // Update UI Chip yg aktif
             document.querySelectorAll('.btn-chip').forEach(b => b.classList.remove('active'));
             let activeChip = document.getElementById('chip-bab-' + bab);
             if(activeChip) activeChip.classList.add('active');
@@ -635,8 +589,7 @@
         let srsQueue = []; let currentCard = null;
 
         function startFlashcard(bab) {
-            document.getElementById('home').classList.remove('active');
-            document.getElementById('flashcard-app').classList.add('active');
+            switchTab('flashcard-app');
             srsQueue = db[bab].map(item => ({ ...item, nextReview: Date.now() }));
             nextCard();
         }
@@ -669,38 +622,37 @@
             document.getElementById('fc-arti').innerText = currentCard.arti;
         }
 
-        function flipCard() { 
-            if(!currentCard) return;
-            document.getElementById('card').classList.toggle('flipped'); 
-        }
+        function flipCard() { if(currentCard) document.getElementById('card').classList.toggle('flipped'); }
 
         function markCard(type) {
+            // Memakai Interval dari Pengaturan
             if (type === 'mudah') srsQueue.shift();
-            else if (type === 'benar') currentCard.nextReview = Date.now() + (10*60*1000);
-            else if (type === 'sulit') currentCard.nextReview = Date.now() + (5*60*1000);
-            else if (type === 'salah') currentCard.nextReview = Date.now() + (1*60*1000);
+            else if (type === 'benar') currentCard.nextReview = Date.now() + (appSettings.intBenar*60*1000);
+            else if (type === 'sulit') currentCard.nextReview = Date.now() + (appSettings.intSulit*60*1000);
+            else if (type === 'salah') currentCard.nextReview = Date.now() + (appSettings.intSalah*60*1000);
             nextCard();
         }
 
         // --- EXAM LOGIC ---
-        let examQuestions = []; let currentQIndex = 0; let score = 0;
+        let examQuestions = []; let currentQIndex = 0; let score = 0; let currentExamPool = [];
 
         function startExam() {
-            let range = document.getElementById('exam-range').value; let pool = [];
-            if (range === "all") Object.values(db).forEach(arr => pool = pool.concat(arr));
-            else if (range.includes("-")) { let [start, end] = range.split("-").map(Number); for(let i=start; i<=end; i++) if(db[i]) pool = pool.concat(db[i]); } 
-            else if(db[range]) pool = [...db[range]];
+            let range = document.getElementById('exam-range').value; currentExamPool = [];
+            if (range === "all") Object.values(db).forEach(arr => currentExamPool = currentExamPool.concat(arr));
+            else if (range.includes("-")) { let [start, end] = range.split("-").map(Number); for(let i=start; i<=end; i++) if(db[i]) currentExamPool = currentExamPool.concat(db[i]); } 
+            else if(db[range]) currentExamPool = [...db[range]];
 
-            if(pool.length < 4) return alert("Kosakata belum mencukupi untuk membuat soal pilihan ganda.");
-            examQuestions = pool.sort(() => 0.5 - Math.random()).slice(0, 20); 
+            if(currentExamPool.length < 4) return alert("Kosakata belum mencukupi.");
+            examQuestions = currentExamPool.sort(() => 0.5 - Math.random()).slice(0, 20); 
             currentQIndex = 0; score = 0;
 
             document.getElementById('exam-setup').style.display = 'none';
             document.getElementById('exam-run').style.display = 'block';
-            loadQuestion(pool);
+            document.getElementById('btn-next-q').style.display = 'none';
+            loadQuestion();
         }
 
-        function loadQuestion(fullPool) {
+        function loadQuestion() {
             if (currentQIndex >= examQuestions.length) {
                 alert(`Evaluasi Selesai.\nSkor Akhir: ${score} dari ${examQuestions.length}`);
                 return finishExam();
@@ -718,7 +670,7 @@
 
             document.getElementById('mc-q').innerText = questionText;
 
-            let wrongOptions = fullPool.filter(item => item.arti !== q.arti).sort(() => 0.5 - Math.random()).slice(0, 3);
+            let wrongOptions = currentExamPool.filter(item => item.arti !== q.arti).sort(() => 0.5 - Math.random()).slice(0, 3);
             let options = [
                 { text: correctAnswer, isCorrect: true },
                 { text: isJpToId ? wrongOptions[0].arti : `${wrongOptions[0].kanji !== "-" ? wrongOptions[0].kanji + " " : ""}(${wrongOptions[0].hiragana})`, isCorrect: false },
@@ -731,16 +683,15 @@
             
             options.forEach(opt => {
                 let btn = document.createElement('button');
-                btn.className = 'mc-btn';
-                btn.innerText = opt.text;
-                btn.onclick = () => handleAnswer(btn, opt.isCorrect, fullPool);
+                btn.className = 'mc-btn'; btn.innerText = opt.text;
+                btn.onclick = () => handleAnswer(btn, opt.isCorrect);
                 optsDiv.appendChild(btn);
             });
         }
 
-        function handleAnswer(btn, isCorrect, fullPool) {
+        function handleAnswer(btn, isCorrect) {
             let buttons = document.querySelectorAll('.mc-btn');
-            buttons.forEach(b => b.style.pointerEvents = 'none');
+            buttons.forEach(b => b.style.pointerEvents = 'none'); // Kunci jawaban
 
             if (isCorrect) {
                 btn.classList.add('correct', 'anim-pop');
@@ -755,16 +706,38 @@
                 });
             }
 
-            setTimeout(() => {
-                currentQIndex++;
-                loadQuestion(fullPool);
-            }, 1500); 
+            // Memunculkan tombol "Berikutnya" dan mematikan auto-next
+            document.getElementById('btn-next-q').style.display = 'block';
+        }
+
+        function nextExamQuestion() {
+            document.getElementById('btn-next-q').style.display = 'none';
+            currentQIndex++;
+            loadQuestion();
         }
 
         function finishExam() {
             document.getElementById('exam-setup').style.display = 'block';
             document.getElementById('exam-run').style.display = 'none';
         }
+
+        // --- FIREBASE PLACEHOLDER ---
+        /*
+        const firebaseConfig = {
+            apiKey: "MASUKAN_API_KEY_FIREBASE_LU",
+            authDomain: "xxxx.firebaseapp.com",
+            projectId: "xxxx",
+            storageBucket: "xxxx.appspot.com",
+            messagingSenderId: "xxxx",
+            appId: "xxxx"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const dbFirestore = firebase.firestore();
+        */
+
+        function loginFirebase() { alert("Fungsi Firebase Email/Password belum diaktifkan (Siapkan Config)."); }
+        function loginGoogle() { alert("Fungsi Google Sign-In belum diaktifkan (Siapkan Config)."); }
 
         loadData();
     </script>

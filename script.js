@@ -759,19 +759,3 @@ if ('serviceWorker' in navigator) {
 loadData();
 
 //lolline
-  const element = document.getElementById('stats-content');
-  const opt = { margin: 10, filename: 'KN5_Statistik.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2, useCORS: true }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } };
-  html2pdf().set(opt).from(element).save();
-}
-
-// 11. MATIKAN CACHE SERVICE WORKER SEMENTARA (HAPUS KALO UDAH FIX 100%)
-if ('serviceWorker' in navigator) {
-   navigator.serviceWorker.getRegistrations().then(function(registrations) {
-       for(let registration of registrations) {
-           registration.unregister();
-       }
-   });
-}
-
-// Mulai Fetch Data
-loadData();

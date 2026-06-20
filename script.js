@@ -54,26 +54,41 @@ function toRomaji(kanaStr) {
     return result; 
 }
 
-// ---------------- AUDIO (TEXT-TO-SPEECH VIA GOOGLE SERVER) ----------------
+// ---------------- AUDIO (WEB SPEECH API NATIVE) ----------------
+// Pemicu agar browser bersiap memuat daftar suara
+if ('speechSynthesis' in window) {
+    window.speechSynthesis.onvoiceschanged = function() {
+        window.speechSynthesis.getVoices();
+    };
+}
+
 function playAudio(elementId) {
     let text = document.getElementById(elementId).innerText;
     if (!text || text === "Tidak ada contoh" || text === "-") return;
     
-    // Encode teks agar aman dikirim lewat URL
-    let encodedText = encodeURIComponent(text);
-    
-    // Menggunakan API Google Translate Extension (GTX) yang kebal CORS dan anti-blokir
-    let url = `https://translate.googleapis.com/translate_tts?client=gtx&ie=UTF-8&tl=ja&q=${encodedText}`;
-    
-    // Buat objek Audio dan putar
-    let audio = new Audio(url);
-    
-    audio.play().catch(function(error) {
-        alert("Server suara sedang sibuk atau diblokir oleh ekstensi browser lu.");
-        console.error("Audio Play Error:", error);
-    });
-}
+    // Cek dukungan browser
+    if (!('speechSynthesis' in window)) {
+        alert("Browser perangkat ini tidak mendukung fitur suara.");
+        return;
+    }
 
+    // Hentikan suara yang sedang berjalan agar tidak menumpuk
+    window.speechSynthesis.cancel();
+    
+    let utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'ja-JP';
+    utterance.rate = 0.85; // Kecepatan bicara (0.85 agak pelan agar jelas)
+    
+    let voices = window.speechSynthesis.getVoices();
+    // Cari spesifik suara Jepang jika tersedia di sistem
+    let jpVoice = voices.find(v => v.lang === 'ja-JP' || v.lang === 'ja_JP' || v.lang.includes('ja'));
+    
+    if (jpVoice) {
+        utterance.voice = jpVoice;
+    }
+    
+    window.speechSynthesis.speak(utterance);
+}
 // ---------------- SETTINGS (DPI & FONT SIZES) ----------------
 function initSettings() {
     let dpi = localStorage.getItem('sys-dpi') || '1';

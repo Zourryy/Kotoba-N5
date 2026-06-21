@@ -129,6 +129,15 @@ function generateKotobaCard(item, delayIndex) {
         </div>`;
 }
 
+// Tutup popup jika area gelap (overlay) di luar konten diklik
+document.querySelectorAll('.popup-overlay').forEach(popup => {
+    popup.addEventListener('click', function(e) {
+        // e.target === this memastikan klik benar-benar di area gelap, bukan di dalam kotak popup
+        if (e.target === this) {
+            this.classList.remove('show');
+        }
+    });
+});
 // ---------------- LOGIKA DETAIL POPUP (BADGE & SIMPAN) ----------------
 function updateDetailSaveBtn(id, btnElementId) {
     let btn = document.getElementById(btnElementId);

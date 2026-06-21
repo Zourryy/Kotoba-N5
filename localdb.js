@@ -3,6 +3,7 @@
 // ==========================================================================
 
 let db = {};
+let dbBunpou = {};
 let allKotobaFlat = [];
 let kanjiDB = [];
 let savedKotoba = JSON.parse(localStorage.getItem('kn5_saved')) || [];
@@ -35,6 +36,9 @@ async function loadData() {
 
         const resKanjiN4 = await fetch('Kanji_N4.txt');
         if (resKanjiN4.ok) parseKanji(await resKanjiN4.text(), 'N4');
+
+        const resBunpou = await fetch('Tata_Bahasa_Lengkap_BAB1-25.txt');
+        if (resBunpou.ok) parseBunpou(await resBunpou.text());
 
         if(Object.keys(db).length === 0) throw new Error("Data Kosakata Kosong");
 
@@ -128,6 +132,35 @@ function parseKanji(text, level) {
                 arti: match[4].trim(), contoh_jp: match[5].trim(), contoh_romaji: match[6].trim(), 
                 contoh_arti: match[7].trim(), level: level
             });
+        }
+    });
+}
+
+function parseBunpou(text) {
+    const lines = text.split('\n');
+    let currentBab = 0;
+    let currentPoint = null;
+
+    lines.forEach(line => {
+        line = line.replace(new RegExp('\\[source:\\s*\\d+\\]', 'g'), '').trim();
+        if(!line || line === 'IV. Keterangan Tata Bahasa') return;
+
+        let babMatch = line.match(/^BAB\s+(\d+)$/i);
+        if(babMatch) {
+            currentBab = parseInt(babMatch[1]);
+            dbBunpou[currentBab] = [];
+            currentPoint = null;
+            return;
+        }
+
+        if(line.startsWith('=========')) return;
+
+        let titleMatch = line.match(/^(\d+\.)\s+(.+)/);
+        if(titleMatch && currentBab > 0) {
+            currentPoint = { title: line, details: [] };
+            dbBunpou[currentBab].push(currentPoint);
+        } else if(currentPoint) {
+            currentPoint.details.push(line);
         }
     });
 }

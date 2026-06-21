@@ -1,5 +1,5 @@
 // ==========================================================================
-// script.js - LOGIKA UI & APLIKASI KN5
+// script.js - LOGIKA UI & APLIKASI KISO
 // ==========================================================================
 
 let currentTheme = localStorage.getItem('theme') || 'dark';
@@ -54,41 +54,33 @@ function toRomaji(kanaStr) {
     return result; 
 }
 
-// ---------------- AUDIO (WEB SPEECH API NATIVE) ----------------
-// Pemicu agar browser bersiap memuat daftar suara
-if ('speechSynthesis' in window) {
-    window.speechSynthesis.onvoiceschanged = function() {
-        window.speechSynthesis.getVoices();
-    };
-}
-
+// ---------------- AUDIO (TEXT-TO-SPEECH) ----------------
 function playAudio(elementId) {
     let text = document.getElementById(elementId).innerText;
     if (!text || text === "Tidak ada contoh" || text === "-") return;
     
-    // Cek dukungan browser
-    if (!('speechSynthesis' in window)) {
-        alert("Browser perangkat ini tidak mendukung fitur suara.");
-        return;
-    }
-
-    // Hentikan suara yang sedang berjalan agar tidak menumpuk
-    window.speechSynthesis.cancel();
+    let encodedText = encodeURIComponent(text);
+    let url = `https://translate.googleapis.com/translate_tts?client=gtx&ie=UTF-8&tl=ja&q=${encodedText}`;
     
-    let utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'ja-JP';
-    utterance.rate = 0.85; // Kecepatan bicara (0.85 agak pelan agar jelas)
-    
-    let voices = window.speechSynthesis.getVoices();
-    // Cari spesifik suara Jepang jika tersedia di sistem
-    let jpVoice = voices.find(v => v.lang === 'ja-JP' || v.lang === 'ja_JP' || v.lang.includes('ja'));
-    
-    if (jpVoice) {
-        utterance.voice = jpVoice;
-    }
-    
-    window.speechSynthesis.speak(utterance);
+    let audio = new Audio(url);
+    audio.play().catch(function(error) {
+        alert("Server suara sedang sibuk atau diblokir oleh ekstensi browser lu.");
+        console.error("Audio Play Error:", error);
+    });
 }
+
+function playAudioText(text) {
+    if (!text || text === "-") return;
+    let encodedText = encodeURIComponent(text);
+    let url = `https://translate.googleapis.com/translate_tts?client=gtx&ie=UTF-8&tl=ja&q=${encodedText}`;
+    
+    let audio = new Audio(url);
+    audio.play().catch(function(error) {
+        alert("Server suara sedang sibuk atau diblokir oleh ekstensi browser lu.");
+        console.error("Audio Play Error:", error);
+    });
+}
+
 // ---------------- SETTINGS (DPI & FONT SIZES) ----------------
 function initSettings() {
     let dpi = localStorage.getItem('sys-dpi') || '1';
@@ -238,7 +230,6 @@ function filterKanjiView(level) {
     listDiv.innerHTML = html;
 }
 
-
 // ---------------- NAVIGASI DASAR ----------------
 let appMode = 'belajar';
 let searchMode = 'kotoba';
@@ -274,8 +265,9 @@ function switchTab(tabId) {
     if(btnBack) btnBack.style.display = (tabId === 'flashcard-app' || tabId === 'exam-run-tab' || tabId === 'saved-kotoba') ? 'flex' : 'none';
     let modeToggle = document.getElementById('top-mode-toggle');
     if(modeToggle) modeToggle.style.display = isHome ? 'flex' : 'none';
+    
     let topSearch = document.getElementById('btn-top-search');
-    if(topSearch) topSearch.style.display = (isHome || tabId === 'preview' || tabId === 'kanji') ? 'flex' : 'none';
+    if(topSearch) topSearch.style.display = (isHome || tabId === 'preview' || tabId === 'kanji' || tabId === 'bunpou') ? 'flex' : 'none';
 
     let fab = document.getElementById('fab-saved');
     if(fab) fab.style.display = (tabId === 'home' || tabId === 'preview') ? 'flex' : 'none';
@@ -340,8 +332,11 @@ function performGlobalSearch() {
 function initGrids() {
     const fcGrid = document.getElementById('bab-grid');
     const pvChapterBar = document.getElementById('pv-chapter-bar');
+    const bpChapterBar = document.getElementById('bp-chapter-bar');
+    
     if(fcGrid) fcGrid.innerHTML = ''; 
     if(pvChapterBar) pvChapterBar.innerHTML = ''; 
+    if(bpChapterBar) bpChapterBar.innerHTML = ''; 
 
     Object.keys(db).forEach(bab => {
         if(fcGrid) {
@@ -358,7 +353,18 @@ function initGrids() {
             pvChapterBar.appendChild(btnChip);
         }
     });
+
+    Object.keys(dbBunpou).forEach(bab => {
+        if(bpChapterBar) {
+            let btnChip = document.createElement('button'); 
+            btnChip.className = 'btn-chip'; btnChip.id = 'chip-bp-' + bab; btnChip.innerText = bab; 
+            btnChip.onclick = () => showBunpou(bab); 
+            bpChapterBar.appendChild(btnChip);
+        }
+    });
+
     if(Object.keys(db).length > 0) showPreview(Object.keys(db)[0]);
+    if(Object.keys(dbBunpou).length > 0) showBunpou(Object.keys(dbBunpou)[0]);
 }
 
 function handleBabClick(bab) {
@@ -388,6 +394,86 @@ function showPreview(bab) {
 function filterPreview() {
     let query = document.getElementById('search-preview').value.toLowerCase();
     let cards = document.querySelectorAll('#pv-list .vocab-card');
+    cards.forEach(card => {
+        let text = card.innerText.toLowerCase();
+        card.style.display = text.includes(query) ? 'flex' : 'none';
+    });
+}
+
+// ---------------- BUNPOU LOGIC ----------------
+function showBunpou(bab) {
+    document.querySelectorAll('#bunpou .btn-chip').forEach(b => b.classList.remove('active'));
+    let activeChip = document.getElementById('chip-bp-' + bab);
+    if(activeChip) activeChip.classList.add('active');
+    
+    let bpTitle = document.getElementById('bp-title');
+    if(bpTitle) bpTitle.innerText = `Pelajaran ${bab}`;
+    
+    let searchBp = document.getElementById('search-bunpou');
+    if(searchBp) searchBp.value = ''; 
+
+    const listDiv = document.getElementById('bp-list'); 
+    if(!listDiv) return;
+    listDiv.innerHTML = '';
+    if(!dbBunpou[bab]) return;
+
+    let html = "";
+    dbBunpou[bab].forEach((point, index) => { 
+        let delay = index * 0.05;
+        html += `<div class="vocab-card animate-slide-up" style="animation-delay: ${delay}s; animation-fill-mode: both; flex-direction:column; align-items:flex-start; cursor:default; padding: 20px;">`;
+        html += `<h3 style="color:var(--accent); margin-bottom:15px; font-size:1.2rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; width: 100%;">${point.title}</h3>`;
+        
+        point.details.forEach(line => {
+            let hasJp = /[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF]/.test(line);
+            
+            let startsWithAlpha = /^[a-zA-Z]/.test(line.trim());
+            let startsWithExplanation = /^(?:\d+\)|\d+\.|\[Perhatian)/i.test(line.trim());
+            
+            let isExample = hasJp && !startsWithAlpha && !startsWithExplanation;
+            
+            if (isExample) {
+                let jpMatch = line.match(/^([①-⑳\d+\)\]\.\…\s]*)(.*?[。？！])\s*(.*)$/);
+                if(!jpMatch) jpMatch = line.match(/^([①-⑳\d+\)\]\.\…\s]*)(.*?[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF]+.*?)\s+([A-Z].*)$/);
+                
+                let marker = "", jpText = line, arti = "";
+                let textForAudio = line;
+
+                if (jpMatch) {
+                    marker = jpMatch[1];
+                    jpText = jpMatch[2];
+                    arti = jpMatch[3];
+                    textForAudio = jpText.replace(/['"`]/g, ""); 
+                } else {
+                    textForAudio = line.replace(/['"`]/g, "");
+                }
+                
+                html += `
+                <div style="display:flex; align-items:flex-start; gap:10px; margin-top:12px; margin-bottom:12px; width:100%;">
+                    <button onclick="playAudioText('${textForAudio}')" style="background:var(--accent); border:none; border-radius:50%; width:26px; height:26px; color:white; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;" title="Putar Suara">
+                        <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                    </button>
+                    <div style="flex:1;">
+                        <div style="font-size:1.05rem; color:var(--text-main); font-weight:500; line-height:1.4;">${marker}${jpText}</div>
+                        ${arti ? `<div style="font-size:0.95rem; color:var(--text-muted); margin-top:4px;">${arti}</div>` : ''}
+                    </div>
+                </div>`;
+            } else {
+                let isSubTitle = /^(?:\d+\)|\d+\.)/.test(line.trim());
+                let fontWeight = isSubTitle ? "600" : "400";
+                let textColor = isSubTitle ? "var(--text-main)" : "var(--text-muted)";
+                let marginTop = isSubTitle ? "15px" : "6px";
+                
+                html += `<div style="font-size:0.95rem; color:${textColor}; font-weight:${fontWeight}; margin-top:${marginTop}; margin-bottom:6px; line-height:1.5;">${line}</div>`;
+            }
+        });
+        html += `</div>`;
+    });
+    listDiv.innerHTML = html;
+}
+
+function filterBunpou() {
+    let query = document.getElementById('search-bunpou').value.toLowerCase();
+    let cards = document.querySelectorAll('#bp-list .vocab-card');
     cards.forEach(card => {
         let text = card.innerText.toLowerCase();
         card.style.display = text.includes(query) ? 'flex' : 'none';
@@ -724,9 +810,21 @@ function renderExamHistory() {
 function exportStatsPDF() {
    document.body.classList.add('pdf-export-mode'); document.getElementById('btn-export-pdf').style.display = 'none';
    const element = document.getElementById('stats-content');
-   const opt = { margin: 15, filename: 'KN5_Data_Statistik_Belajar.pdf', image: { type: 'jpeg', quality: 1 }, html2canvas: { scale: 2, useCORS: true }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } };
+   const opt = { margin: 15, filename: 'Kiso_Data_Statistik_Belajar.pdf', image: { type: 'jpeg', quality: 1 }, html2canvas: { scale: 2, useCORS: true }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } };
    html2pdf().set(opt).from(element).save().then(() => { document.body.classList.remove('pdf-export-mode'); document.getElementById('btn-export-pdf').style.display = 'block'; });
 }
-function copyRekening() { navigator.clipboard.writeText("107397547525").then(() => { alert("Nomor Rekening Jago berhasil disalin!"); }); }
+
+function copyRekening() { 
+    navigator.clipboard.writeText("107397547525").then(() => { 
+        showToast("Nomor Rekening Jago berhasil disalin!"); 
+    }); 
+}
+
+function showToast(message) {
+    let toast = document.getElementById("toast");
+    toast.innerText = message;
+    toast.classList.add("show");
+    setTimeout(function(){ toast.classList.remove("show"); }, 3000);
+}
 
 window.onload = function() { loadData(); };

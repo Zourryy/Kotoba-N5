@@ -290,7 +290,7 @@ function switchTab(tabId) {
     let fab = document.getElementById('fab-saved');
     if(fab) fab.style.display = (tabId === 'home' || tabId === 'preview') ? 'flex' : 'none';
 
-    if(tabId === 'statistik') { updateCharts(); renderHeatmap(); renderExamHistory(); }
+    if(tabId === 'statistik') { updateCharts(); renderHeatmap(); renderExamHistory(); renderBabStats(); }
     if(tabId === 'saved-kotoba') { document.getElementById('search-saved').value = ''; filterSaved(); }
     if(tabId === 'kanji') { document.getElementById('search-kanji-tab').value = ''; filterKanjiView('N5'); }
 }
@@ -816,6 +816,73 @@ function renderExamHistory() {
            </div>
        </div>`;
    });
+}
+
+// ---------------- STATISTIK UJIAN PER BAB ----------------
+function renderBabStats() {
+    const grid = document.getElementById('bab-stats-grid');
+    if(!grid) return;
+    grid.innerHTML = '';
+    
+    let totalBabs = Object.keys(db).length || 25;
+    
+    for(let i = 1; i <= totalBabs; i++) {
+        // Cek apakah bab ini pernah ada di riwayat ujian
+        let isTested = examHistory.some(h => {
+            let babsArr = h.babs.split(',').map(s => s.trim());
+            return babsArr.includes(i.toString());
+        });
+        
+        let btn = document.createElement('button');
+        btn.className = `btn-bab-stat ${isTested ? 'tested' : ''}`;
+        btn.innerText = i;
+        btn.onclick = () => showBabStatDetail(i);
+        grid.appendChild(btn);
+    }
+}
+
+function showBabStatDetail(bab) {
+    // Ambil histori ujian khusus bab ini dan urutkan dari terlama ke terbaru
+    let babHistory = examHistory.filter(h => {
+        let babsArr = h.babs.split(',').map(s => s.trim());
+        return babsArr.includes(bab.toString());
+    }).reverse(); 
+
+    document.getElementById('bab-stat-title').innerText = `Statistik Ujian Bab ${bab}`;
+    let detailDiv = document.getElementById('bab-stat-detail');
+    
+    if (babHistory.length === 0) {
+        detailDiv.innerHTML = `<div style="text-align:center; padding: 20px 0; color:var(--text-muted);">Belum ada riwayat ujian untuk Bab ${bab}.<br><br>Selesaikan ujian di bab ini untuk melacak progres!</div>`;
+    } else {
+        let timesTested = babHistory.length;
+        let latestExam = babHistory[babHistory.length - 1];
+        let latestScorePct = Math.round((latestExam.score / latestExam.total) * 100);
+        
+        let trendHtml = "";
+        if (babHistory.length > 1) {
+            let prevExam = babHistory[babHistory.length - 2];
+            let prevScorePct = Math.round((prevExam.score / prevExam.total) * 100);
+            let diff = latestScorePct - prevScorePct;
+            
+            if (diff > 0) trendHtml = `<span class="trend-up">▲ Naik ${diff}%</span> dari ujian sebelumnya.`;
+            else if (diff < 0) trendHtml = `<span class="trend-down">▼ Turun ${Math.abs(diff)}%</span> dari ujian sebelumnya.`;
+            else trendHtml = `<span class="trend-flat">▶ Stabil</span> (Skor tetap sama).`;
+        } else {
+            trendHtml = `<span class="trend-flat">Ujian dilakukan pertama kali.</span>`;
+        }
+
+        detailDiv.innerHTML = `
+            <div style="margin-bottom: 10px;"><strong>Total Percobaan:</strong> ${timesTested} kali ujian</div>
+            <div style="margin-bottom: 10px;"><strong>Akurasi Terakhir:</strong> <span style="font-size:1.2rem; font-weight:bold; color:var(--accent);">${latestScorePct}%</span> (${latestExam.score}/${latestExam.total} Benar)</div>
+            <div style="margin-top: 20px; margin-bottom: 15px; padding: 15px; background: rgba(0,0,0,0.15); border-radius: 10px; border: 1px dashed var(--border);">
+                <strong style="display:block; margin-bottom:5px;">Progres Retensi:</strong>
+                ${trendHtml}
+            </div>
+            <div style="font-size: 12px; color:var(--text-muted); text-align:right;">📅 Ujian Terakhir: ${latestExam.date}</div>
+        `;
+    }
+    
+    document.getElementById('bab-stat-popup').classList.add('show');
 }
 
 function exportStatsPDF() {

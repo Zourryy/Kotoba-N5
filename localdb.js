@@ -56,10 +56,11 @@ async function loadData() {
         switchTab('home');
 
     } catch (err) {
+        console.error("Load Data Error:", err);
         const errDiv = document.getElementById('loader-error');
         if (errDiv) {
             errDiv.style.display = 'block';
-            errDiv.innerHTML = `Gagal sinkron file TXT.<br><span style="font-size:12px; font-weight:normal; color:var(--text-muted);">(Info: ${err.message}. Harap jalankan index.html menggunakan ekstensi Live Server di VSCode).</span>`;
+            errDiv.innerHTML = `Gagal sinkron file TXT.<br><span style="font-size:12px; font-weight:normal; color:var(--text-muted);">(Info: ${err.message}. Harap pastikan kamu membuka index.html melalui fitur Live Server).</span>`;
         }
     }
 }
@@ -85,21 +86,28 @@ function parseKotoba(text) {
             let matchFull = line.match(/^(.+?)\s*:\s*(.+?)\s*-\s*(.+?)\s*\((.+?)\s*-\s*(.+?)\)\.?\s*$/);
             
             if (matchFull) {
-                jepang = matchFull[1].trim(); arti = matchFull[2].trim();
-                c_jp = matchFull[3].trim(); c_rom = matchFull[4].trim(); c_art = matchFull[5].trim();
+                jepang = matchFull[1].trim(); 
+                arti = matchFull[2].trim();
+                c_jp = matchFull[3].trim(); 
+                c_rom = matchFull[4].trim(); 
+                c_art = matchFull[5].trim();
             } else {
                 let parts = line.split(' : ');
                 jepang = parts[0].trim();
-                let rest = parts[1].trim();
+                let rest = (parts[1] || "").trim();
                 if(rest.includes(' - ')) {
                     let p2 = rest.split(' - ');
                     arti = p2[0].trim();
                     c_jp = p2.slice(1).join(' - ').trim();
-                } else { arti = rest; }
+                } else { 
+                    arti = rest; 
+                }
             }
 
-            // MENGHAPUS STRIP PADA ARTI KATA (Misal: ragu-ragu -> ragu ragu)
-            arti = arti.replace(/([a-zA-Z])-([a-zA-Z])/g, "$1 $2");
+            // SAFE REPLACE: MENGHAPUS STRIP PADA ARTI KATA (Misal: ragu-ragu -> ragu ragu)
+            if (arti && typeof arti === 'string') {
+                arti = arti.replace(/([a-zA-Z])-([a-zA-Z])/g, "$1 $2");
+            }
 
             let kanji = "-"; let hiragana = jepang;
             let matchKana = jepang.match(/(.+?)\s*\((.+?)\)/);
@@ -147,7 +155,7 @@ function parseBunpou(text) {
     let currentPoint = null;
 
     lines.forEach(line => {
-        line = line.replace(new RegExp('\\', 'g'), '').trim();
+        line = line.replace(new RegExp('\\[source:\\s*\\d+\\]', 'g'), '').trim();
         if(!line || line === 'IV. Keterangan Tata Bahasa') return;
 
         let babMatch = line.match(/^BAB\s+(\d+)$/i);
